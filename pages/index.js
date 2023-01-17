@@ -4,14 +4,15 @@ import Navbar from "../src/components/navbar/navbar";
 import HeaderContainer from "../src/components/headerContainer/headerContainer";
 import ClothesGrid from "../src/components/clothesGrid/clothesGrid";
 import Context from "../libs/context.js";
-import { CloseFullscreen } from "@mui/icons-material";
+import RedBanner from "../src/components/redBanner/redBanner";
+import Categories from "../src/components/categories/categories";
+import Footer from "../src/components/footer/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ data, store }) {
-  console.log(store);
+export default function Home({ data, store, categories, footerNavigation }) {
   return (
-    <div className=" h-screen">
+    <div className=" h-full min-w-fit overflow-x-hidden">
       <Head>
         <title>Create Next App</title>
         <meta
@@ -40,19 +41,28 @@ export default function Home({ data, store }) {
             <p>Everything you need to greet the season in style.</p>
           </div>
           <ClothesGrid />
+          <RedBanner />
+          <Categories data={categories} />
         </main>
       </Context.Provider>
+      <footer>
+        <Footer data={footerNavigation} />
+      </footer>
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const { header, store } = await import("/data/data.json");
-
+  const { header, store, categories, footerNavigation } = await import(
+    "/data/data.json"
+  );
+  console.log(footerNavigation);
   return {
     props: {
       data: header,
       store: store,
+      categories: categories,
+      footerNavigation: footerNavigation,
     },
   };
 }

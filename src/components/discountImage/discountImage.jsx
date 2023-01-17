@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function DiscountImage() {
   return (
-    <div className="bottom bg-stone-400 h-1/3 relative h">
+    <div className="bottom bg-stone-400 h-1/3 relative ">
       <Image
         src="/ribbon.jpg"
         fill
@@ -14,7 +14,7 @@ function DiscountImage() {
         transform -translate-x-1/2 -translate-y-1/2 flex flex-col 
         items-center justify-center py-5 px-7"
       >
-        <h2 class="mb-2 text-2xl font-medium tracking-wide">
+        <h2 className="mb-2 text-2xl font-medium tracking-wide text-center">
           15% OFF FULL-PRICED STYLES!
         </h2>
         <div className="mb-6 text-center">

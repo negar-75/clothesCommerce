@@ -13,7 +13,9 @@ function HeroImage() {
          transform -translate-x-1/2 -translate-y-1/2 flex flex-col 
          items-center justify-center py-5 px-7"
       >
-        <h2 className="text-2xl font-bold px-12 mb-2">SUIT YOURSELF</h2>
+        <h2 className="text-2xl font-bold px-12 mb-2 text-center">
+          SUIT YOURSELF
+        </h2>
         <div className="mb-6">
           <p className="text-center">
             New swim is in! Our best-selling quilted jacket chases away<br></br>

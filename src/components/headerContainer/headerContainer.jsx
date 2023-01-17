@@ -26,7 +26,7 @@ function HeaderContainer({ data }) {
             </Link>
           </div>
         </nav>
-        <div className="relative  flex items-center">
+        <div className="relative  md:flex items-center hidden">
           <Link
             href="/"
             className="cursor-pointer hover:text-gray-600 uppercase font-medium text-sm"
