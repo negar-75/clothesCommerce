@@ -1,19 +1,19 @@
 import Image from "next/image";
-import Marquee from "react-fast-marquee";
+import FastMarquee from "react-fast-marquee";
 
 function Categories({ data }) {
   return (
-    <div
-      className="flex mx-6 mb-10  "
-      style={{ minHeight: 350 }}
+    <FastMarquee
+      speed={30}
+      gradient={false}
     >
-      <Marquee>
+      <div className="flex  w-full">
         {data.map((item) => (
-          <div className=" flex flex-col  w-1/3  text-center items-center">
-            <div className=" mb-4 w-full flex justify-center h-[23rem]">
+          <div className=" flex flex-col items-center w-72">
+            <div className=" mb-4 flex justify-center h-[23rem]">
               <img
                 src={item.image}
-                style={{ width: "90% ", objectFit: "cover" }}
+                style={{ objectFit: "cover", width: "90%" }}
               />
             </div>
             <button className="uppercase  font-semibold tracking-wide text-xs text-slate-900 bg-slate-200 rounded-full  py-3 px-4 placeholder-shown: border border-slate-400 hover:border-black transition ease-linear duration-150">
@@ -21,8 +21,8 @@ function Categories({ data }) {
             </button>
           </div>
         ))}
-      </Marquee>
-    </div>
+      </div>
+    </FastMarquee>
   );
 }
 
