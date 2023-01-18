@@ -4,12 +4,11 @@ import wordCounter from "../../../functions/wordCounter";
 function ClothesGridItem({ image, title, desc }) {
   return (
     <div className="flex flex-col items-center text-center mb-10 ">
-      <div className="mb-2 w-3/4 h-[35rem] relative md:h-[28rem]">
-        <Image
+      <div className="mb-2 w-3/4 h-[35rem] flex md:h-[30rem] justify-center">
+        <img
           src={image}
           alt={title}
-          fill
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", height: "100%", width: "80%" }}
         />
       </div>
 
