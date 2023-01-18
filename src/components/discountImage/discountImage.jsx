@@ -12,7 +12,7 @@ function DiscountImage() {
       <div
         className="absolute z-10 top-1/2 left-1/2 
         transform -translate-x-1/2 -translate-y-1/2 flex flex-col 
-        items-center justify-center py-5 px-7"
+        items-center justify-center "
       >
         <h2 className="mb-2 text-2xl font-medium tracking-wide text-center">
           15% OFF FULL-PRICED STYLES!

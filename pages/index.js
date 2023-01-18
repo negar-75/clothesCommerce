@@ -56,7 +56,7 @@ export async function getStaticProps() {
   const { header, store, categories, footerNavigation } = await import(
     "/data/data.json"
   );
-  console.log(footerNavigation);
+
   return {
     props: {
       data: header,

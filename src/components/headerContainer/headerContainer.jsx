@@ -36,7 +36,7 @@ function HeaderContainer({ data }) {
           <span className={s.bagCount}>{2}</span>
         </div>
       </div>
-      <div className="  h-[110vh] flex flex-col  px-5 gap-3  ">
+      <div className="  h-[110vh] flex flex-col gap-3  ">
         <HeroImage />
         <DiscountImage />
       </div>

@@ -2,7 +2,7 @@ import Image from "next/image";
 function RedBanner() {
   return (
     <div
-      className=" bg-stone-400 relative mx-6 mb-6 "
+      className=" bg-stone-400 relative  mb-6 "
       style={{ minHeight: 250 }}
     >
       <img
@@ -12,7 +12,7 @@ function RedBanner() {
       <div
         className="absolute z-10 top-1/2 left-1/2 
         transform -translate-x-1/2 -translate-y-1/2 flex flex-col 
-        items-center justify-center py-5 px-7 text-white"
+        items-center justify-center  text-white"
       >
         <p className="mb-2  font-medium tracking-wide">Introducing</p>
         <div className="container mb-4 flex flex-col items-center justify-center ">
