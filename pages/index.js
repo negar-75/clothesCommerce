@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ data, store, categories, footerNavigation }) {
   return (
-    <div className=" h-full min-w-fit overflow-x-hidden">
+    <div className="relative h-full">
       <Head>
         <title>Create Next App</title>
         <meta
