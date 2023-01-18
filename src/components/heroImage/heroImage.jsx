@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function HeroImage() {
   return (
-    <div className="top bg-stone-400 h-4/5 relative">
+    <div className="top h-4/5 relative">
       <Image
         src="/woman.jpg"
         fill

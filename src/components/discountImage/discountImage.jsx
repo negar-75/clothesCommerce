@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function DiscountImage() {
   return (
-    <div className="bottom bg-stone-400 h-1/3 relative ">
+    <div className="bottom h-1/3 relative ">
       <Image
         src="/ribbon.jpg"
         fill

@@ -4,8 +4,7 @@ import wordCounter from "../../../functions/wordCounter";
 function ClothesGridItem({ image, title, desc }) {
   return (
     <div className="flex flex-col items-center text-center mb-10 ">
-      <div className="mb-2 bg-yellow-300 w-3/4 h-[35rem] relative md:h-[28rem]">
-        image
+      <div className="mb-2 w-3/4 h-[35rem] relative md:h-[28rem]">
         <Image
           src={image}
           alt={title}
