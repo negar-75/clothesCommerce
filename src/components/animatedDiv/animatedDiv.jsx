@@ -20,7 +20,10 @@ function AnimatedDiv({ children }) {
     <animated.div
       {...bind()}
       style={{
-        transform: to([x], (x) => `translate3d(${x}px,0,0)`),
+        transform: x.to({
+          range: [0, 0.2, 0.5, 1],
+          output: [1, 0.7, 1.5, 1],
+        }),
       }}
     >
       {children}
