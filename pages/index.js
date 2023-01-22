@@ -2,11 +2,12 @@ import Head from "next/head";
 import { Inter } from "@next/font/google";
 import Navbar from "../src/components/navbar/navbar";
 import HeaderContainer from "../src/components/headerContainer/headerContainer";
-import ClothesGrid from "../src/components/clothesGrid/clothesGrid";
+import CategoriesGrid from "../src/components/categoriesGrid/categoriesGrid";
 import Context from "../libs/context.js";
 import RedBanner from "../src/components/redBanner/redBanner";
-import Categories from "../src/components/categories/categories";
+import CategoriesSlideShow from "../src/components/categoriesSlideShow/categoriesSlideShow";
 import Footer from "../src/components/footer/footer";
+import ShoppingCart from "../src/components/shoppingCart/shoppingCart";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,9 +41,9 @@ export default function Home({ data, store, categories, footerNavigation }) {
             </h2>
             <p>Everything you need to greet the season in style.</p>
           </div>
-          <ClothesGrid />
+          <CategoriesGrid />
           <RedBanner />
-          <Categories data={categories} />
+          <CategoriesSlideShow data={categories} />
         </main>
       </Context.Provider>
       <footer>

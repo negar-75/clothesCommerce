@@ -2,8 +2,8 @@ import SignupBox from "../signupBox/signupBox";
 
 function Footer({ data }) {
   return (
-    <div className="flex flex-col  px-5 py-10 justify-between md:flex-row">
-      <div className="flex gap-2 ">
+    <div className="flex flex-col px-5 py-10 justify-between md:flex-row md:px-10">
+      <div className="flex gap-2 md:gap-16">
         {Object.keys(data).map((key) => {
           return (
             <div>

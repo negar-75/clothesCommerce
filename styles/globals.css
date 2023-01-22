@@ -4,6 +4,37 @@
 
 @import "tailwindcss/utilities";
 
+@layer base {
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number'] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+  h1 {
+    @apply text-4xl;
+    @apply font-bold;
+  }
+  h2 {
+    @apply text-3xl;
+    @apply font-bold;
+  }
+  h3 {
+    @apply text-2xl;
+    @apply font-bold;
+  }
+  h4 {
+    @apply text-xl;
+    @apply font-semibold;
+  }
+ 
+  h6 {
+    @apply text-sm;
+    @apply font-semibold;
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -20,6 +51,7 @@ body {
  
   
 }
+
  
 @media only screen and (max-width:600px){
   html, body {

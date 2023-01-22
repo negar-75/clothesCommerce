@@ -1,6 +1,4 @@
 import Link from "next/link";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
-import s from "./headerContainer.module.css";
 import HeroImage from "../heroImage/heroImage";
 import DiscountImage from "../discountImage/discountImage";
 function HeaderContainer({ data }) {
@@ -26,17 +24,8 @@ function HeaderContainer({ data }) {
             </Link>
           </div>
         </nav>
-        <div className="relative  md:flex items-center hidden">
-          <Link
-            href="/"
-            className="cursor-pointer hover:text-gray-600 uppercase font-medium text-sm"
-          >
-            <LocalMallIcon />
-          </Link>
-          <span className={s.bagCount}>{2}</span>
-        </div>
       </div>
-      <div className="  h-[110vh] flex flex-col gap-3  ">
+      <div className="  h-[110vh] flex flex-col gap-3 md:mx-5  ">
         <HeroImage />
         <DiscountImage />
       </div>

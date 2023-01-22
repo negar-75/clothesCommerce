@@ -2,7 +2,7 @@ import Image from "next/image";
 function RedBanner() {
   return (
     <div
-      className=" bg-stone-400 relative  mb-6 "
+      className=" bg-stone-400 relative mb-6 md:mx-5"
       style={{ minHeight: 250 }}
     >
       <img

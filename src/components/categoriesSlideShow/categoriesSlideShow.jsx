@@ -1,7 +1,7 @@
 import Image from "next/image";
 import FastMarquee from "react-fast-marquee";
 
-function Categories({ data }) {
+function CategoriesSlideShow({ data }) {
   return (
     <FastMarquee
       speed={30}
@@ -9,7 +9,7 @@ function Categories({ data }) {
     >
       <div className="flex  w-full">
         {data.map((item) => (
-          <div className=" flex flex-col items-center w-72">
+          <div className=" flex flex-col items-center w-72 md:w-96">
             <div className=" mb-4 flex justify-center h-[23rem]">
               <img
                 src={item.image}
@@ -26,4 +26,4 @@ function Categories({ data }) {
   );
 }
 
-export default Categories;
+export default CategoriesSlideShow;
