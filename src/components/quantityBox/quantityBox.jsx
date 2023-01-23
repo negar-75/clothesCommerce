@@ -14,14 +14,15 @@ function QuantityBox({ value, id }) {
           className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none relative"
           onClick={() => dispatch(decrementQuantity(id))}
         >
-          <span class="m-auto md:text-2xl font-thin absolute translate-y-[-60%] translate-x-[-50%]">
+          <span className="m-auto md:text-2xl font-thin absolute translate-y-[-60%] translate-x-[-50%]">
             −
           </span>
         </button>
         <input
-          className="  bg-gray-300 outline-none focus:outline-none text-center w-full md:font-semibold md:text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
+          className=" bg-gray-300 outline-none focus:outline-none text-center w-full md:font-semibold md:text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
           name="custom-input-number"
           value={value}
+          defaultValue={0}
         ></input>
         <button
           data-action="increment"
