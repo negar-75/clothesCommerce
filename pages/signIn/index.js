@@ -9,7 +9,7 @@ function SignInPage() {
     router.push("/");
   }
   return (
-    <div className="bg-amber-50 h-screen flex flex-col items-center py-10">
+    <div className="bg-amber-50 h-full flex flex-col items-center py-10">
       <div className="w-full bg-stone-200 mt-10 px-5 py-1 md:px-16 mb-10">
         <p className="text-xs">
           <Link href="/">
