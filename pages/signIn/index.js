@@ -32,7 +32,10 @@ function SignInPage() {
           Sign in
         </button>
       </form>
-      <div className="items-center mt-10 flex flex-col gap-4 bg-red-800">
+      <div
+        className="items-center mt-10 flex flex-col gap-4 pb-10
+      "
+      >
         <h3>Or Sign in with:</h3>
         <button
           className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px]"
