@@ -7,11 +7,10 @@ import thunk from "redux-thunk";
 const persistConfig = {
   key: "root",
   storage,
-  whiteList: ["cart"],
+  whiteList: ["cart", "user"],
 };
 
 const persistedReducer = persistReducer(persistConfig, cartReducer);
-console.log(persistedReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,

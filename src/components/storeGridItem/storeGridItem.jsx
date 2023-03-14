@@ -1,6 +1,6 @@
 import { addToCart } from "../../../store/slices/cart.slice";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+
 function StoreGridItem({ item }) {
   const dispatch = useDispatch();
 
@@ -10,6 +10,7 @@ function StoreGridItem({ item }) {
         <img
           src={item.image}
           className="w-[100%] object-cover h-[100%]"
+          alt={item.title}
         />
       </div>
       <div className=" flex flex-col items-center justify-center ">

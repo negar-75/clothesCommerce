@@ -5,7 +5,6 @@ import OrderSummaryBox from "../orderSummaryBox/orderSummaryBox";
 import { removeFromCart } from "../../../store/slices/cart.slice";
 import { useDispatch } from "react-redux";
 import QuantityBox from "../quantityBox/quantityBox";
-import AnimatedDiv from "../animatedDiv/animatedDiv";
 
 function ShoppingCart() {
   const cart = useSelector((state) => state.cart);
@@ -17,7 +16,9 @@ function ShoppingCart() {
       0
     );
   };
-
+  if (cart.length === 0) {
+    return <h3 className="text-center">No item selected</h3>;
+  }
   return (
     <div className="grid grid-cols-12 md:mx-32 mx-5 ">
       <table className="col-span-12 mb-6 ">
@@ -42,6 +43,7 @@ function ShoppingCart() {
                       <img
                         src={row.image}
                         className="object-cover w-[100%] h-[100%] object-top group-hover:opacity-70"
+                        alt={row.title}
                       />
                       <h6
                         onClick={() => dispatch(removeFromCart(row.id))}

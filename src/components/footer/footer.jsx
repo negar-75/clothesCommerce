@@ -4,9 +4,9 @@ function Footer({ data }) {
   return (
     <div className="flex flex-col px-5 py-10 justify-between md:flex-row md:px-10">
       <div className="flex gap-2 md:gap-16">
-        {Object.keys(data).map((key) => {
+        {Object.keys(data).map((key, index) => {
           return (
-            <div>
+            <div key={index}>
               <h3 className="text-sm font-medium text-gray-900">{key}</h3>
               <ul
                 role="list"

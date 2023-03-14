@@ -1,4 +1,3 @@
-import Image from "next/image";
 import FastMarquee from "react-fast-marquee";
 
 function CategoriesSlideShow({ data }) {
@@ -8,8 +7,11 @@ function CategoriesSlideShow({ data }) {
       gradient={false}
     >
       <div className="flex  w-full">
-        {data.map((item) => (
-          <div className=" flex flex-col items-center w-72 md:w-96">
+        {data.map((item, index) => (
+          <div
+            className=" flex flex-col items-center w-72 md:w-96"
+            key={index}
+          >
             <div className=" mb-4 flex justify-center h-[23rem]">
               <img
                 src={item.image}

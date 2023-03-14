@@ -7,7 +7,6 @@ import Context from "../libs/context.js";
 import RedBanner from "../src/components/redBanner/redBanner";
 import CategoriesSlideShow from "../src/components/categoriesSlideShow/categoriesSlideShow";
 import Footer from "../src/components/footer/footer";
-import ShoppingCart from "../src/components/shoppingCart/shoppingCart";
 
 const inter = Inter({ subsets: ["latin"] });
 
