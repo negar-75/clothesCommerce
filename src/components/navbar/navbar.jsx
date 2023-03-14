@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useSession, signIn, signOut } from "next-auth/react";
 function Navbar() {
   const { data, status } = useSession();
+  console.log(data);
   const cart = useSelector((state) => state.cart);
 
   const getItemsCount = () => {
@@ -21,7 +22,7 @@ function Navbar() {
         />
         <span>{data.user.name}</span>
         <div
-          className="border border-slate-300 px-4 py-2 text-center cursor-pointer"
+          className="border border-slate-300 px-4 py-2 text-center cursor-pointer w-[140px]"
           onClick={signOut}
         >
           Sign out
@@ -36,7 +37,7 @@ function Navbar() {
       </>
     );
   }
-  console.log(authenticatedUser);
+
   return (
     <div className="flex px-6 py-4 justify-between items-center ">
       <span className="cursor-pointer">My closet</span>

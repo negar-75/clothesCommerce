@@ -12,9 +12,9 @@ function Footer({ data }) {
                 role="list"
                 className="mt-6 space-y-6"
               >
-                {data[key].map((item) => (
+                {data[key].map((item, index) => (
                   <li
-                    key={item.name}
+                    key={index}
                     className="text-sm"
                   >
                     <a
