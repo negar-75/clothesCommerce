@@ -15,7 +15,7 @@ function SignInPage() {
           <Link href="/">
             <span className="text-gray-500 ">Home/ </span>
           </Link>
-          Register
+          Sign in
         </p>
       </div>
       <h2 className="mb-10">Sign in</h2>
