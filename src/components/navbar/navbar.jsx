@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useEffect } from "react";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useSelector } from "react-redux";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -10,8 +11,14 @@ function Navbar() {
     return cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
   };
 
-  const userName = localStorage.getItem("user").split(" ");
-  const profile = (userName[0].charAt(0) + userName[1].charAt(0)).toUpperCase();
+  let profile;
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      const userName = localStorage.getItem("user").split(" ");
+      profile = (userName[0].charAt(0) + userName[1].charAt(0)).toUpperCase();
+    }
+  }, [localStorage.getItem("user")]);
 
   let authenticatedUser;
   if (status === "authenticated" || localStorage.getItem("user")) {
