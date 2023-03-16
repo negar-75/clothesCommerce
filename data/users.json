@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "2023-03-16T15:07:22.639Z",
+    "firstName": "negar",
+    "lastName": "nasiri",
+    "email": "nasirinegar13@gmail.com",
+    "password": "123456",
+    "repeatPassword": "123456",
+    "adress": "lisbon,parade",
+    "zip": "123456"
+  }
+]

@@ -4,23 +4,33 @@ import { useSelector } from "react-redux";
 import { useSession, signIn, signOut } from "next-auth/react";
 function Navbar() {
   const { data, status } = useSession();
-  console.log(data);
   const cart = useSelector((state) => state.cart);
 
   const getItemsCount = () => {
     return cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
   };
 
+  const userName = localStorage.getItem("user").split(" ");
+  const profile = (userName[0].charAt(0) + userName[1].charAt(0)).toUpperCase();
+
   let authenticatedUser;
-  if (status === "authenticated") {
+  if (status === "authenticated" || localStorage.getItem("user")) {
     authenticatedUser = (
       <div className="flex items-center gap-3">
-        <img
-          src={data.user.image}
-          alt="user profile"
-          className="w-[40px] h-[40px] rounded-full border-2 border-slate-300 p-[2px]"
-        />
-        <span>{data.user.name}</span>
+        {data ? (
+          <img
+            src={data.user.image}
+            alt="user profile"
+            className="w-[40px] h-[40px] rounded-full border-2 border-slate-300 p-[2px]"
+          />
+        ) : (
+          <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+            <span class="font-medium text-gray-600 dark:text-gray-300">
+              {profile}
+            </span>
+          </div>
+        )}
+        <span>{(data && data.user.name) || localStorage.getItem("user")}</span>
         <div
           className="border border-slate-300 px-4 py-2 text-center cursor-pointer w-[140px]"
           onClick={signOut}

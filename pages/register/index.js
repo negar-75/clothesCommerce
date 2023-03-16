@@ -39,6 +39,11 @@ function Register() {
     })
       .then((res) => res.json())
       .then((result) => {
+        console.log(result);
+        localStorage.setItem(
+          "user",
+          result.user.firstName + " " + result.user.lastName
+        );
         setIsModalOpen(true);
       })
       .catch((err) => console.log(err));
