@@ -1,8 +1,9 @@
-function CountrySelection() {
+function CountrySelection({ name, onChange }) {
   return (
     <select
       id="country"
-      name="country"
+      name={name}
+      onChange={onChange}
     >
       <option>select country</option>
       <option value="AF">Afghanistan</option>
