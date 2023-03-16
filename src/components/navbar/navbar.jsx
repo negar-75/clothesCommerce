@@ -1,24 +1,25 @@
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useSelector } from "react-redux";
 import { useSession, signIn, signOut } from "next-auth/react";
 function Navbar() {
   const { data, status } = useSession();
+  const [profile, setProfile] = useState();
   const cart = useSelector((state) => state.cart);
 
   const getItemsCount = () => {
     return cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
   };
 
-  let profile;
-
   useEffect(() => {
     if (localStorage.getItem("user")) {
       const userName = localStorage.getItem("user").split(" ");
-      profile = (userName[0].charAt(0) + userName[1].charAt(0)).toUpperCase();
+      setProfile((userName[0].charAt(0) + userName[1].charAt(0)).toUpperCase());
+      console.log(profile);
     }
-  }, [localStorage.getItem("user")]);
+  }, []);
+  console.log(profile);
 
   let authenticatedUser;
   if (status === "authenticated" || localStorage.getItem("user")) {
