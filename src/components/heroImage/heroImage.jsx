@@ -5,6 +5,7 @@ function HeroImage() {
     <div className="top h-4/5 relative">
       <Image
         src="/woman.jpg"
+        alt="woman shopping"
         fill
         style={{ objectFit: "cover" }}
       />

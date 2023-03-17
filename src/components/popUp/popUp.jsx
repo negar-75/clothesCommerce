@@ -35,7 +35,7 @@ function PopUp({ isModalOpen, setIsModalOpen, modalContent }) {
           </button>
           <div className="p-10 text-center">
             <h3 className="mb-7 text-lg font-normal text-black dark:text-gray-400">
-              Your account has been created
+              {modalContent}
             </h3>
             <button
               type="button"
@@ -48,9 +48,9 @@ function PopUp({ isModalOpen, setIsModalOpen, modalContent }) {
               data-modal-hide="popup-modal"
               type="button"
               className="text-gray-800 bg-white  focus:ring-4    border border-black text-sm font-medium px-5 py-2.5  focus:z-10"
-              onClick={() => router.push("/")}
+              onClick={() => router.push("/auth/signin")}
             >
-              Back to home
+              Go to sign in
             </button>
           </div>
         </div>

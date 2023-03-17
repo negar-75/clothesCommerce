@@ -1,17 +1,14 @@
 import CountrySelection from "../../src/components/countrySelection/countrySelection";
 import Link from "next/link";
 import { useState, useRef } from "react";
-
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import PopUp from "../../src/components/popUp/popUp";
-import { green } from "@mui/material/colors";
 
 function Register() {
   const [user, setUser] = useState({});
   const passRef = useRef();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
-  const { data, status } = useSession();
 
   const handleChange = (event) => {
     setUser({
@@ -19,7 +16,7 @@ function Register() {
       [event.target.name]: event.target.value,
     });
   };
-
+  console.log(user);
   const validatePassword = (event) => {
     const password = passRef.current.value;
     if (event.target.value !== password) {
@@ -40,10 +37,6 @@ function Register() {
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
-        localStorage.setItem(
-          "user",
-          result.user.firstName + " " + result.user.lastName
-        );
         setIsModalOpen(true);
       })
       .catch((err) => console.log(err));
@@ -130,7 +123,6 @@ function Register() {
             type="password"
             name="repeatPassword"
             required
-            onChange={handleChange}
             onKeyUp={validatePassword}
             className="invalid:border-red-500 valid:border-green-600"
           />
@@ -202,7 +194,7 @@ function Register() {
       <PopUp
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        modalContent
+        modalContent="Your account has been created"
       />
     </div>
   );

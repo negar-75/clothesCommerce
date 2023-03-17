@@ -1,12 +1,1 @@
-[
-  {
-    "id": "2023-03-16T15:07:22.639Z",
-    "firstName": "negar",
-    "lastName": "nasiri",
-    "email": "nasirinegar13@gmail.com",
-    "password": "123456",
-    "repeatPassword": "123456",
-    "adress": "lisbon,parade",
-    "zip": "123456"
-  }
-]
+[{"id":"2023-03-16T16:12:19.316Z","firstName":"negar","lastName":"nasiri","email":"abc@mail.com","password":"123456","repeatPassword":"123456","adress":"lisbon,parade","zip":"123456"},{"id":"2023-03-17T20:00:27.882Z","firstName":"ali","lastName":"ahmadi","email":"aliahmadi@gmail.com","password":"123456","adress":"tehran","zip":"123456"},{"id":"2023-03-17T23:18:04.538Z","firstName":"mohammad","lastName":"vatankhah","email":"mohammad@gmail.com","password":"123456","adress":"tehran","zip":"123455"},{"id":"2023-03-17T23:19:20.423Z","firstName":"mohammad","lastName":"vatankhah","email":"mohammad@gmail.com","password":"123456","adress":"tehran","zip":"123455"}]

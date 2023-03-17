@@ -16,6 +16,7 @@ function CategoriesSlideShow({ data }) {
               <img
                 src={item.image}
                 style={{ objectFit: "cover", width: "90%" }}
+                alt={item.title}
               />
             </div>
             <button className="uppercase  font-semibold tracking-wide text-xs text-slate-900 bg-slate-200 rounded-full  py-3 px-4 placeholder-shown: border border-slate-400 hover:border-black transition ease-linear duration-150">

@@ -1,8 +1,18 @@
-import { signIn, useSession } from "next-auth/react";
+import {
+  signIn,
+  useSession,
+  getProviders,
+  getSession,
+  getCsrfToken,
+} from "next-auth/react";
+
 import { useRouter } from "next/router";
+import { useRef } from "react";
 import Link from "next/link";
 
-function SignInPage() {
+function SignInPage({ csrfToken }) {
+  const emailRef = useRef();
+  const passwordRef = useRef();
   const { status } = useSession();
   const router = useRouter();
   if (status === "authenticated") {
@@ -20,15 +30,37 @@ function SignInPage() {
       </div>
       <h2 className="mb-10">Sign in</h2>
       <form className="items-center  flex flex-col gap-6 shadow-md bg-white py-10 px-8 lg:px-20 rounded-lg mx-3">
+        <input
+          name="csrfToken"
+          type="hidden"
+          defaultValue={csrfToken}
+        />
         <div className="flex gap-2 flex-col lg:w-[300px] w-[95%]">
-          <label>User name</label>
-          <input type="text" />
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            id="email"
+            onChange={(e) => (emailRef.current = e.target.value)}
+          />
         </div>
         <div className="flex gap-2 flex-col lg:w-[300px] w-[95%]">
-          <label>Password</label>
-          <input type="password" />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            onChange={(e) => (passwordRef.current = e.target.value)}
+          />
         </div>
-        <button className="border-2 w-[200px] h-[40px] uppercase">
+        <button
+          className="border-2 w-[200px] h-[40px] uppercase"
+          onClick={(e) => {
+            e.preventDefault();
+            signIn("credentials", {
+              email: emailRef.current,
+              password: passwordRef.current,
+            });
+          }}
+        >
           Sign in
         </button>
       </form>
@@ -68,3 +100,10 @@ function SignInPage() {
 }
 
 export default SignInPage;
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+    },
+  };
+}

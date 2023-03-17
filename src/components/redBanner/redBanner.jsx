@@ -8,6 +8,7 @@ function RedBanner() {
       <img
         src="https://source.unsplash.com/cTO2DcOEBts"
         style={{ width: "100%", height: "250px", objectFit: "cover" }}
+        alt="shopping"
       />
       <div
         className="absolute z-10 top-1/2 left-1/2 

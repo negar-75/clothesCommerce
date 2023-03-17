@@ -7,6 +7,7 @@ function DiscountImage() {
         src="/ribbon.jpg"
         fill
         style={{ objectFit: "cover" }}
+        alt="discount"
       />
 
       <div
