@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 
 const initialState = {
   cart: [],
+  userId: null,
 };
 
 const cartSlice = createSlice({
@@ -39,6 +40,10 @@ const cartSlice = createSlice({
       const index = state.cart.findIndex((item) => item.id === action.payload);
       state.cart.splice(index, 1);
     },
+
+    addUserId: (state, action) => {
+      state.userId = action.payload;
+    },
   },
 });
 
@@ -49,4 +54,5 @@ export const {
   incrementQuantity,
   decrementQuantity,
   removeFromCart,
+  addUserId,
 } = cartSlice.actions;

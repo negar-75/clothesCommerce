@@ -5,6 +5,7 @@ import OrderSummaryBox from "../orderSummaryBox/orderSummaryBox";
 import { removeFromCart } from "../../../store/slices/cart.slice";
 import { useDispatch } from "react-redux";
 import QuantityBox from "../quantityBox/quantityBox";
+import { useSession } from "next-auth/react";
 
 function ShoppingCart() {
   const cart = useSelector((state) => state.cart);
@@ -63,7 +64,7 @@ function ShoppingCart() {
                 </td>
                 <td>
                   <QuantityBox
-                    value={row.quantity}
+                    quantity={row.quantity}
                     id={row.id}
                   />
                 </td>

@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useWidth } from "../../../hooks/useWidth";
 
 function ContactInfo() {
   const {
     query: { price },
   } = useRouter();
-  console.log(price);
+  const width = useWidth();
+  const wordsPerLine = width > 697 ? 7 : 3;
+
   const [information, setInformation] = useState({
     firstName: "",
     lastName: "",
@@ -16,12 +19,12 @@ function ContactInfo() {
 
   const [formattedAdress, setFormattedAdress] = useState();
 
-  const formatParagraph = (e) => {
-    const myarr = e.target.value.split(",");
+  useEffect(() => {
+    const myarr = information.adress.split(",");
     let formatted = "";
     for (let i = 0; i < myarr.length; i++) {
-      if ((i + 1) % 7 === 0) {
-        formatted += myarr[i] + "\n";
+      if ((i + 1) % wordsPerLine === 0) {
+        formatted += "," + myarr[i] + "\n";
         setFormattedAdress(formatted);
       } else {
         if (i === 0) {
@@ -33,7 +36,7 @@ function ContactInfo() {
         }
       }
     }
-  };
+  }, [width, information.adress]);
 
   const handleChange = (e) => {
     setInformation({
@@ -43,8 +46,8 @@ function ContactInfo() {
   };
 
   return (
-    <div className="basis-[60%]  px-5 py-10">
-      <div className="mb-10  px-20">
+    <div className="basis-[60%]  lg:px-5 py-10">
+      <div className="mb-10  lg:px-20 px-10">
         <h3 className=" mb-10"> Shipping information </h3>
         <form className="grid lg:grid-cols-2 grid-cols-1 gap-y-5 gap-x-4  ">
           <div className="flex flex-col gap-2">
@@ -72,7 +75,6 @@ function ContactInfo() {
               required
               name="adress"
               onChange={handleChange}
-              onKeyUp={formatParagraph}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -95,7 +97,7 @@ function ContactInfo() {
           </div>
         </form>
       </div>
-      <div className=" px-20">
+      <div className=" lg:px-20 px-10">
         <h3 className=" mb-5">Receipt</h3>
         <div className=" flex flex-col gap-7 pb-10">
           <div className="flex justify-between">

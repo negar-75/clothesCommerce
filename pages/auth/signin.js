@@ -5,18 +5,21 @@ import {
   getSession,
   getCsrfToken,
 } from "next-auth/react";
-
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { useRef } from "react";
+import { addUserId } from "../../store/slices/cart.slice";
+
 import Link from "next/link";
 
-function SignInPage({ csrfToken }) {
+function SignInPage(props) {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { status } = useSession();
-  const router = useRouter();
+  const { status, data } = useSession();
+  const dispatch = useDispatch();
+  console.log(props);
   if (status === "authenticated") {
-    router.push("/");
+    dispatch(addUserId(data.user.user.id));
   }
   return (
     <div className="bg-amber-50 h-full flex flex-col items-center py-10">
@@ -33,7 +36,7 @@ function SignInPage({ csrfToken }) {
         <input
           name="csrfToken"
           type="hidden"
-          defaultValue={csrfToken}
+          // defaultValue={csrfToken}
         />
         <div className="flex gap-2 flex-col lg:w-[300px] w-[95%]">
           <label htmlFor="email">Email</label>
@@ -100,10 +103,18 @@ function SignInPage({ csrfToken }) {
 }
 
 export default SignInPage;
-export async function getServerSideProps(context) {
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (!session) {
+    return {
+      props: {},
+    };
+  }
+
   return {
     props: {
-      csrfToken: await getCsrfToken(context),
+      session,
     },
+    redirect: { destination: "/" },
   };
 }

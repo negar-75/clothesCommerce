@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useSelector } from "react-redux";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 function Navbar() {
   const { data, status } = useSession();
   const [profile, setProfile] = useState();
@@ -12,7 +12,7 @@ function Navbar() {
   const getItemsCount = () => {
     return cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
   };
-  console.log(data);
+
   useEffect(() => {
     if (status === "authenticated") {
       setUserIsLogged(true);
@@ -27,7 +27,7 @@ function Navbar() {
         ).toUpperCase()
       );
     }
-  }, []);
+  }, [data?.user?.user]);
 
   const loggedInUser = (
     <div className="flex items-center gap-3">

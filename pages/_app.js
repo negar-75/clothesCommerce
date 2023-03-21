@@ -7,7 +7,7 @@ import { SessionProvider } from "next-auth/react";
 
 export default function App({ Component, pageProps }) {
   // store.subscribe(() => console.log(store.getState()));
-
+  console.log(pageProps);
   return (
     <>
       <Toaster position="bottom-center" />

@@ -4,7 +4,7 @@ import {
 } from "../../../store/slices/cart.slice";
 import { useDispatch } from "react-redux";
 
-function QuantityBox({ value, id }) {
+function QuantityBox({ quantity, id }) {
   const dispatch = useDispatch();
   return (
     <div className="custom-number-input h-6 w-20 md:h-10 md:w-28">
@@ -21,8 +21,9 @@ function QuantityBox({ value, id }) {
         <input
           className=" bg-gray-300 outline-none focus:outline-none text-center w-full md:font-semibold md:text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
           name="custom-input-number"
-          value={value}
-          defaultValue={0}
+          value={quantity}
+          type="number"
+          readOnly
         ></input>
         <button
           data-action="increment"
