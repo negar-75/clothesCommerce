@@ -34,24 +34,12 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, profile }) {
-      console.log(user);
-      console.log(profile);
-      const isAllowedToSignIn = true;
-      if (isAllowedToSignIn) {
-        return true;
-      } else {
-        // Return false to display a default error message
-        return false;
-        // Or you can return a URL to redirect to:
-        // return '/unauthorized'
-      }
-    },
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
     async session({ session, token, user }) {
-      // Send properties to the client, like an access_token from a provider.
+      console.log(token);
+
       session.user = token;
       return session;
     },

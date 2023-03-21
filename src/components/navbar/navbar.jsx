@@ -12,7 +12,7 @@ function Navbar() {
   const getItemsCount = () => {
     return cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
   };
-
+  console.log(data);
   useEffect(() => {
     if (status === "authenticated") {
       setUserIsLogged(true);
@@ -39,14 +39,15 @@ function Navbar() {
         </div>
       ) : (
         <img
-          src={data?.user?.image}
+          src={data?.user?.picture}
           alt="user profile"
           className="w-[40px] h-[40px] rounded-full border-2 border-slate-300 p-[2px]"
         />
       )}
       <span>
-        {(data && data.user.name) ||
-          (data && data.user.user.firstName + " " + data.user.user.lastName)}
+        {(data && data?.user?.name) ||
+          (data &&
+            data?.user?.user?.firstName + " " + data?.user?.user?.lastName)}
       </span>
       <div
         className="border border-slate-300 px-4 py-2 text-center cursor-pointer w-[140px]"

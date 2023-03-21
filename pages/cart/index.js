@@ -5,7 +5,7 @@ import ShoppingCart from "../../src/components/shoppingCart/shoppingCart.jsx";
 
 function Cart() {
   return (
-    <div className="relative h-full">
+    <div className="relative h-full pb-10">
       <header>
         <Navbar />
         <div className="w-full bg-stone-200 mt-10 px-5 py-1 md:px-16 mb-10">
