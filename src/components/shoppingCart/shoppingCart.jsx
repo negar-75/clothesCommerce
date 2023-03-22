@@ -1,23 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import DiscountBox from "../discountBox/discountBox";
 import OrderSummaryBox from "../orderSummaryBox/orderSummaryBox";
 import { removeFromCart } from "../../../store/slices/cart.slice";
 import { useDispatch } from "react-redux";
 import QuantityBox from "../quantityBox/quantityBox";
-import { useSession } from "next-auth/react";
 
 function ShoppingCart() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const getTotalPrice = () => {
-    return cart.reduce(
+    return cart?.reduce(
       (accumulator, item) => accumulator + item.quantity * item.price,
       0
     );
   };
-  if (cart.length === 0) {
+  if (cart?.length === 0) {
     return <h3 className="text-center">No item selected</h3>;
   }
   return (
