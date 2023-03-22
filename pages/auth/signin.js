@@ -6,8 +6,8 @@ import {
   getCsrfToken,
 } from "next-auth/react";
 import { useDispatch } from "react-redux";
-import { useRouter } from "next/router";
-import { useRef } from "react";
+
+import { useEffect, useRef } from "react";
 import { addUserId } from "../../store/slices/cart.slice";
 
 import Link from "next/link";
@@ -17,10 +17,15 @@ function SignInPage(props) {
   const passwordRef = useRef();
   const { status, data } = useSession();
   const dispatch = useDispatch();
-  console.log(props);
-  if (status === "authenticated") {
-    dispatch(addUserId(data.user.user.id));
-  }
+  console.log(data);
+  console.log(status);
+  useEffect(() => {
+    console.log("here");
+    if (status === "authenticated") {
+      dispatch(addUserId(data.user.user.id));
+    }
+  }, [data?.user?.user?.id, status]);
+
   return (
     <div className="bg-amber-50 h-full flex flex-col items-center py-10">
       <div className="w-full bg-stone-200 mt-10 px-5 py-1 md:px-16 mb-10">

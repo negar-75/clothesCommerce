@@ -16,15 +16,14 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        console.log(credentials.email);
         const res = await fetch("http://localhost:3000/api/auth/signin", {
           method: "POST",
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" },
         });
-        console.log("here");
+
         const user = await res.json();
-        console.log(user);
+
         if (res.ok && user) {
           return user;
         }
@@ -38,8 +37,6 @@ export const authOptions = {
       return { ...token, ...user };
     },
     async session({ session, token, user }) {
-      console.log(token);
-
       session.user = token;
       return session;
     },

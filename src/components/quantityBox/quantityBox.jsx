@@ -19,7 +19,7 @@ function QuantityBox({ quantity, id }) {
           </span>
         </button>
         <input
-          className=" bg-gray-300 outline-none focus:outline-none text-center w-full md:font-semibold md:text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
+          className=" bg-gray-300 outline-none focus:outline-none text-center w-full md:font-semibold md:text-md border-none  md:text-basecursor-default flex items-center text-gray-700 "
           name="custom-input-number"
           value={quantity}
           type="number"

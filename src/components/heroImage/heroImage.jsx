@@ -8,6 +8,7 @@ function HeroImage() {
         alt="woman shopping"
         fill
         style={{ objectFit: "cover" }}
+        priority
       />
       <div
         className="absolute z-10 bg-white opacity-90 top-1/2 left-1/2 
