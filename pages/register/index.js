@@ -26,9 +26,8 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    console.log(user);
     fetch("http://localhost:3000/api/user", {
-      mode: "no-cors",
       method: "POST",
       body: JSON.stringify(user),
       headers: {
