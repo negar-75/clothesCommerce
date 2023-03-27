@@ -94,6 +94,7 @@ function Register() {
             type="text"
             name="email"
             required
+            autoComplete="username"
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             onChange={handleChange}
             className="peer valid:border-green-600 invalid:border-red-500"
@@ -123,6 +124,7 @@ function Register() {
           <input
             type="password"
             name="repeatPassword"
+            autoComplete="new-password"
             required
             onKeyUp={validatePassword}
             className="invalid:border-red-500 valid:border-green-600"
