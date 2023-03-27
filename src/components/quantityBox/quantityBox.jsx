@@ -4,7 +4,7 @@ import {
 } from "../../../store/slices/cart.slice";
 import { useDispatch } from "react-redux";
 
-function QuantityBox({ quantity, id }) {
+function QuantityBox({ quantity, id, clientId }) {
   const dispatch = useDispatch();
   return (
     <div className="custom-number-input h-6 w-20 md:h-10 md:w-28">
@@ -12,7 +12,14 @@ function QuantityBox({ quantity, id }) {
         <button
           data-action="decrement"
           className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none relative"
-          onClick={() => dispatch(decrementQuantity(id))}
+          onClick={() =>
+            dispatch(
+              decrementQuantity({
+                id,
+                clientId,
+              })
+            )
+          }
         >
           <span className="m-auto md:text-2xl font-thin absolute translate-y-[-60%] translate-x-[-50%]">
             −
@@ -28,7 +35,14 @@ function QuantityBox({ quantity, id }) {
         <button
           data-action="increment"
           className="text-gray-600 bg-gray-300 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer relative"
-          onClick={() => dispatch(incrementQuantity(id))}
+          onClick={() =>
+            dispatch(
+              incrementQuantity({
+                id,
+                clientId,
+              })
+            )
+          }
         >
           <span className="m-auto md:text-2xl font-thin absolute translate-y-[-60%] translate-x-[-50%]">
             +

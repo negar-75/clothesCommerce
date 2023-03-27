@@ -1,30 +1,12 @@
-import {
-  signIn,
-  useSession,
-  getProviders,
-  getSession,
-  getCsrfToken,
-} from "next-auth/react";
-import { useDispatch } from "react-redux";
+import { signIn, getSession } from "next-auth/react";
 
-import { useEffect, useRef } from "react";
-import { addUserId } from "../../store/slices/cart.slice";
+import { useRef } from "react";
 
 import Link from "next/link";
 
-function SignInPage(props) {
+function SignInPage() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { status, data } = useSession();
-  const dispatch = useDispatch();
-  console.log(data);
-  console.log(status);
-  useEffect(() => {
-    console.log("here");
-    if (status === "authenticated") {
-      dispatch(addUserId(data.user.user.id));
-    }
-  }, [data?.user?.user?.id, status]);
 
   return (
     <div className="bg-amber-50 h-full flex flex-col items-center py-10">

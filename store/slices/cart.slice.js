@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"; // this is account reducer
 import toast from "react-hot-toast";
 
 const initialState = {
-  cart: [],
-  userId: null,
+  carts: {},
+  items: [],
 };
 
 const cartSlice = createSlice({
@@ -11,38 +11,93 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const itemExists = state.cart.find(
-        (item) => item.id === action.payload.id
-      );
-      if (itemExists) {
-        itemExists.quantity++;
+      if (action.payload.id) {
+        if (state.carts.hasOwnProperty(action.payload.id)) {
+          const itemExists = state.carts[action.payload.id].find(
+            (item) => item.id === action.payload.item.id
+          );
+          if (itemExists) {
+            itemExists.quantity++;
+          } else {
+            state.carts[action.payload.id].push({
+              ...action.payload.item,
+              quantity: 1,
+            });
+          }
+          toast(`${action.payload.item.title} added`);
+        } else {
+          state.carts[action.payload.id] = [
+            {
+              ...action.payload.item,
+              quantity: 1,
+            },
+          ];
+          toast(`${action.payload.item.title} added`);
+        }
       } else {
-        state.cart.push({ ...action.payload, quantity: 1 });
+        const itemExists = state.items.find(
+          (item) => item.id === action.payload.item.id
+        );
+
+        if (itemExists) {
+          itemExists.quantity++;
+        } else {
+          state.items.push({
+            ...action.payload.item,
+            quantity: 1,
+          });
+        }
+        toast(`${action.payload.item.title} added`);
       }
-      toast(`${action.payload.title} added`);
     },
     incrementQuantity: (state, action) => {
-      const item = state.cart.find((item) => item.id === action.payload);
-      item.quantity++;
+      if (action.payload.clientId) {
+        const item = state.carts[action.payload.clientId].find(
+          (item) => item.id === action.payload.id
+        );
+        item.quantity++;
+      } else {
+        const item = state.items.find((item) => item.id === action.payload.id);
+        item.quantity++;
+      }
     },
     decrementQuantity: (state, action) => {
-      const item = state.cart.find((item) => item.id === action.payload);
-      if (item.quantity === 1) {
-        const index = state.cart.findIndex(
-          (item) => item.id === action.payload
+      if (action.payload.clientId) {
+        const item = state.carts[action.payload.clientId].find(
+          (item) => item.id === action.payload.id
         );
-        state.cart.splice(index, 1);
+        if (item.quantity === 1) {
+          const index = state.carts[action.payload.clientId].findIndex(
+            (item) => item.id === action.payload.id
+          );
+          state.carts[action.payload.clientId].splice(index, 1);
+        } else {
+          item.quantity--;
+        }
       } else {
-        item.quantity--;
+        const item = state.items.find((item) => item.id === action.payload.id);
+        if (item.quantity === 1) {
+          const index = state.items.findIndex(
+            (item) => item.id === action.payload.id
+          );
+          state.items.splice(index, 1);
+        } else {
+          item.quantity--;
+        }
       }
     },
     removeFromCart: (state, action) => {
-      const index = state.cart.findIndex((item) => item.id === action.payload);
-      state.cart.splice(index, 1);
-    },
-
-    addUserId: (state, action) => {
-      state.userId = action.payload;
+      if (action.payload.clientId) {
+        const index = state.carts[action.payload.clientId].findIndex(
+          (item) => item.id === action.payload.id
+        );
+        state.carts[action.payload.clientId].splice(index, 1);
+      } else {
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        state.items.splice(index, 1);
+      }
     },
   },
 });
@@ -54,5 +109,4 @@ export const {
   incrementQuantity,
   decrementQuantity,
   removeFromCart,
-  addUserId,
 } = cartSlice.actions;

@@ -4,19 +4,21 @@ import DiscountBox from "../discountBox/discountBox";
 import OrderSummaryBox from "../orderSummaryBox/orderSummaryBox";
 import { removeFromCart } from "../../../store/slices/cart.slice";
 import { useDispatch } from "react-redux";
+
 import QuantityBox from "../quantityBox/quantityBox";
 
-function ShoppingCart() {
-  const cart = useSelector((state) => state.cart);
+function ShoppingCart({ cartItems, id }) {
+  console.log(id);
+
   const dispatch = useDispatch();
 
   const getTotalPrice = () => {
-    return cart?.reduce(
+    return cartItems?.reduce(
       (accumulator, item) => accumulator + item.quantity * item.price,
       0
     );
   };
-  if (cart?.length === 0) {
+  if (cartItems?.length === 0 || !cartItems) {
     return <h3 className="text-center">No item selected</h3>;
   }
   return (
@@ -31,7 +33,7 @@ function ShoppingCart() {
           </tr>
         </thead>
         <tbody>
-          {cart?.map((row) => {
+          {cartItems?.map((row) => {
             return (
               <tr
                 key={row.id}
@@ -46,7 +48,14 @@ function ShoppingCart() {
                         alt={row.title}
                       />
                       <h6
-                        onClick={() => dispatch(removeFromCart(row.id))}
+                        onClick={() =>
+                          dispatch(
+                            removeFromCart({
+                              id: row.id,
+                              clientId: id,
+                            })
+                          )
+                        }
                         className="absolute bottom-[-60px] text-center py-1 text-white transition-bottom duration-200 ease-linear
                        bg-gray-400 right-0 left-0 font-light group-hover:bottom-[40%] cursor-pointer "
                       >
@@ -65,6 +74,7 @@ function ShoppingCart() {
                   <QuantityBox
                     quantity={row.quantity}
                     id={row.id}
+                    clientId={id}
                   />
                 </td>
                 <td>

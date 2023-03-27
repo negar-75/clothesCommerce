@@ -2,8 +2,12 @@ import Link from "next/link";
 import React from "react";
 import Navbar from "../../src/components/navbar/navbar";
 import ShoppingCart from "../../src/components/shoppingCart/shoppingCart.jsx";
+import { getSession } from "next-auth/react";
+import { useSelector } from "react-redux";
 
-function Cart() {
+function Cart({ id }) {
+  const cart = useSelector((state) => state.carts[id]);
+  console.log(id);
   return (
     <div className="relative h-full pb-10">
       <header>
@@ -21,10 +25,31 @@ function Cart() {
         <div className="title md:py-2 mb-10">
           <h2 className="text-center">Your Shopping Cart</h2>
         </div>
-        <ShoppingCart />
+        <ShoppingCart
+          cartItems={cart}
+          id={id}
+        />
       </main>
     </div>
   );
 }
 
 export default Cart;
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  console.log(session);
+  if (session) {
+    return {
+      props: {
+        id: session?.user?.id || session?.id,
+      },
+    };
+  }
+
+  return {
+    props: {
+      message: "user has not logged in",
+    },
+  };
+}
