@@ -6,9 +6,9 @@ export const filePath = () => {
 };
 export const extractData = (filePath) => {
   const fileData = fs.readFileSync(filePath);
-  console.log(fileData);
+
   const data = JSON.parse(fileData);
-  console.log(data);
+
   return data;
 };
 function handler(req, res) {
@@ -38,9 +38,9 @@ function handler(req, res) {
         };
 
         const path = filePath();
-        console.log(typeof path);
+
         const data = extractData(path);
-        console.log(data);
+
         data.push(newUser);
         fs.writeFileSync(path, JSON.stringify(data));
         res

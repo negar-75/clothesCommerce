@@ -108,6 +108,7 @@ function Register() {
             type="password"
             name="password"
             required
+            autoComplete="new-password"
             onChange={handleChange}
             pattern=".{6,12}"
             className="peer valid:border-green-600 invalid:border-red-500"
