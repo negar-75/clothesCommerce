@@ -1,13 +1,22 @@
 import Link from "next/link";
-import React from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../src/components/navbar/navbar";
 import ShoppingCart from "../../src/components/shoppingCart/shoppingCart.jsx";
 import { getSession } from "next-auth/react";
 import { useSelector } from "react-redux";
 
 function Cart({ id }) {
-  const cart = useSelector((state) => state.carts[id]);
-  console.log(id);
+  const state = useSelector((state) => state);
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    if (id) {
+      setCart(state.carts[id]);
+    } else {
+      setCart(state.items);
+    }
+  }, [id, state]);
+
   return (
     <div className="relative h-full pb-10">
       <header>
@@ -49,7 +58,7 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      message: "user has not logged in",
+      id: null,
     },
   };
 }

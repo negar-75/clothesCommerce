@@ -6,7 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { SessionProvider } from "next-auth/react";
 
 export default function App({ Component, pageProps }) {
-  console.log(store.getState());
+  // console.log(store.getState());
   return (
     <>
       <Toaster position="bottom-center" />
