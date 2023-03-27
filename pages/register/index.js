@@ -16,7 +16,7 @@ function Register() {
       [event.target.name]: event.target.value,
     });
   };
-  console.log(user);
+
   const validatePassword = (event) => {
     const password = passRef.current.value;
     if (event.target.value !== password) {
@@ -36,7 +36,6 @@ function Register() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         setIsModalOpen(true);
       })
       .catch((err) => console.log(err));
