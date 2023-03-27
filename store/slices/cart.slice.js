@@ -57,10 +57,8 @@ const cartSlice = createSlice({
         );
         item.quantity++;
       } else {
-        console.log(action.payload.id);
-        console.log("I am runing");
         const item = state.items.find((item) => item.id === action.payload.id);
-        console.log(item);
+
         item.quantity++;
       }
     },
