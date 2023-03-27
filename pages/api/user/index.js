@@ -13,7 +13,7 @@ export const extractData = (filePath) => {
   return data;
 };
 function handler(req, res) {
-  console.log(req.body.firstName);
+  console.log(req);
   try {
     switch (req.method) {
       case "POST": {
@@ -63,4 +63,4 @@ function handler(req, res) {
   }
 }
 
-export default bodyParser.urlencoded({ extended: true })(handler);
+export default handler;
