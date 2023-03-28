@@ -12,7 +12,7 @@ export const extractData = (filePath) => {
   return data;
 };
 export default function handler(req, res) {
-  console.log(req);
+  console.log(req.method);
   try {
     switch (req.method) {
       case "POST": {
@@ -49,12 +49,14 @@ export default function handler(req, res) {
         res
           .status(201)
           .json({ message: "user has been created", user: newUser });
+        break;
       }
 
       default: {
         const path = filePath();
         const data = extractData(path);
         res.status(200).json({ users: data });
+        break;
       }
     }
   } catch (err) {
