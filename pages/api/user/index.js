@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import bodyParser from "body-parser";
 
 export const filePath = () => {
   return path.join(process.cwd(), "data", "users.json");
@@ -12,7 +13,6 @@ export const extractData = (filePath) => {
   return data;
 };
 export default function handler(req, res) {
-  console.log(req.method);
   try {
     switch (req.method) {
       case "POST": {
@@ -43,8 +43,7 @@ export default function handler(req, res) {
         const data = extractData(path);
 
         data.push(newUser);
-        console.log(newUser);
-        console.log(JSON.stringify(data));
+
         fs.writeFileSync(path, JSON.stringify(data));
         res
           .status(201)
@@ -63,3 +62,12 @@ export default function handler(req, res) {
     console.log(err);
   }
 }
+
+export const config = {
+  api: {
+    bodyParser: {
+      json: true,
+      limit: "1mb",
+    },
+  },
+};
