@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import cors from "cors";
+import bodyParser from "body-parser";
 
 export const filePath = () => {
   return path.join(process.cwd(), "data", "users.json");
@@ -12,20 +12,22 @@ export const extractData = (filePath) => {
 
   return data;
 };
-export default cors()(function handler(req, res) {
-  console.log(req.body);
+export default function handler(req, res) {
+  console.log(req);
   try {
     switch (req.method) {
       case "POST": {
         const {
-          firstName,
-          lastName,
-          email,
-          password,
-          repeatPassword,
-          adress,
-          zip,
-        } = req.body;
+          body: {
+            firstName,
+            lastName,
+            email,
+            password,
+            repeatPassword,
+            adress,
+            zip,
+          },
+        } = req;
         const newUser = {
           id: new Date().toISOString(),
           firstName,
@@ -60,7 +62,7 @@ export default cors()(function handler(req, res) {
   } catch (err) {
     console.log(err);
   }
-});
+}
 
 export const config = {
   api: {
