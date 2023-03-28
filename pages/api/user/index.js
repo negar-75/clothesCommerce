@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import bodyParser from "body-parser";
 
 export const filePath = () => {
   return path.join(process.cwd(), "data", "users.json");
@@ -12,7 +11,7 @@ export const extractData = (filePath) => {
 
   return data;
 };
-function handler(req, res) {
+export default function handler(req, res) {
   console.log(req);
   try {
     switch (req.method) {
@@ -62,5 +61,3 @@ function handler(req, res) {
     console.log(err);
   }
 }
-
-export default handler;
