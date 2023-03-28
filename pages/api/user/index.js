@@ -13,6 +13,7 @@ export const extractData = (filePath) => {
   return data;
 };
 export default function handler(req, res) {
+  console.log(req);
   try {
     switch (req.method) {
       case "POST": {
