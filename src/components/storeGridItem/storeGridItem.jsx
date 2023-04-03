@@ -27,7 +27,7 @@ function StoreGridItem({ item }) {
             dispatch(
               addToCart({
                 item,
-                id: data?.user?.id || data?.id || undefined,
+                id: data?.user?._id || data?.id || undefined,
               })
             )
           }

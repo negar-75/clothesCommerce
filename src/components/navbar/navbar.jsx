@@ -9,11 +9,11 @@ function Navbar() {
   const [userIsLogged, setUserIsLogged] = useState(false);
   const store = useSelector((state) => state);
   const [cart, setCart] = useState([]);
-
+  console.log(data);
   useEffect(() => {
-    if (data?.user?.id || data?.id) {
-      if (store.carts.hasOwnProperty(data?.user?.id || data?.id)) {
-        setCart(store.carts[data?.user?.id || data?.id]);
+    if (data?.user?._id || data?.id) {
+      if (store.carts.hasOwnProperty(data?.user?._id || data?.id)) {
+        setCart(store.carts[data?.user?._id || data?.id]);
       } else {
         setCart([]);
       }

@@ -36,6 +36,7 @@ function Register() {
     })
       .then((res) => res.json())
       .then((result) => {
+        console.log(result);
         setIsModalOpen(true);
       })
       .catch((err) => console.log(err));

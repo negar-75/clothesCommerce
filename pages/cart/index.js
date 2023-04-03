@@ -51,7 +51,7 @@ export async function getServerSideProps(ctx) {
   if (session) {
     return {
       props: {
-        id: session?.user?.id || session?.id,
+        id: session?.user?._id || session?.id,
       },
     };
   }

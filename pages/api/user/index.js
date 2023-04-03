@@ -1,18 +1,18 @@
 import fs from "fs";
 import path from "path";
-import bodyParser from "body-parser";
+import { MongoClient } from "mongodb";
 
-export const filePath = () => {
-  return path.join(process.cwd(), "data", "users.json");
-};
-export const extractData = (filePath) => {
-  const fileData = fs.readFileSync(filePath);
+// export const filePath = () => {
+//   return path.join(process.cwd(), "data", "users.json");
+// };
+// export const extractData = (filePath) => {
+//   const fileData = fs.readFileSync(filePath);
 
-  const data = JSON.parse(fileData);
+//   const data = JSON.parse(fileData);
 
-  return data;
-};
-export default function handler(req, res) {
+//   return data;
+// };
+export default async function handler(req, res) {
   console.log(req);
   try {
     switch (req.method) {
@@ -29,7 +29,6 @@ export default function handler(req, res) {
           },
         } = req;
         const newUser = {
-          id: new Date().toISOString(),
           firstName,
           lastName,
           email,
@@ -39,23 +38,42 @@ export default function handler(req, res) {
           zip,
         };
 
-        const path = filePath();
+        let client;
+        try {
+          client = await MongoClient.connect(
+            "mongodb+srv://nasirinegar:AjxC9qQSf8ybeDOv@cluster0.60qjwcn.mongodb.net/users?retryWrites=true&w=majority"
+          );
+        } catch (err) {
+          res.status(500).json({ message: "database connection has failed" });
+          return;
+        }
 
-        const data = extractData(path);
+        try {
+          const db = client.db();
+          await db.collection("accounts").insertOne(newUser);
+          res.status(201).json({ newUser });
+          client.close();
+        } catch (err) {
+          res.status(500).json({ message: "inserting data has failed" });
+        }
 
-        data.push(newUser);
+        // const path = filePath();
 
-        fs.writeFileSync(path, JSON.stringify(data));
-        res
-          .status(201)
-          .json({ message: "user has been created", user: newUser });
+        // const data = extractData(path);
+
+        // data.push(newUser);
+
+        // fs.writeFileSync(path, JSON.stringify(data));
+        // res
+        //   .status(201)
+        //   .json({ message: "user has been created", user: newUser });
         break;
       }
 
       default: {
-        const path = filePath();
-        const data = extractData(path);
-        res.status(200).json({ users: data });
+        // const path = filePath();
+        // const data = extractData(path);
+        // res.status(200).json({ users: data });
         break;
       }
     }

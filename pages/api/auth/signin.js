@@ -1,32 +1,39 @@
-import { filePath, extractData } from "../user"; //TODO : FIX THE BUG
+import { MongoClient } from "mongodb";
 
-function handler(req, res) {
-  const path = filePath();
-  const data = extractData(path);
+async function handler(req, res) {
+  switch (req.method) {
+    case "POST": {
+      const email = req.body.email;
+      const password = req.body.password;
 
-  try {
-    console.log(req.method);
-    switch (req.method) {
-      case "POST": {
-        const email = req.body.email;
-        const password = req.body.password;
-
-        const user = data.find(
-          (user) => user.email === email && user.password === password
+      let client;
+      try {
+        client = await MongoClient.connect(
+          "mongodb+srv://nasirinegar:AjxC9qQSf8ybeDOv@cluster0.60qjwcn.mongodb.net/users?retryWrites=true&w=majority"
         );
+      } catch (err) {
+        res.status(500).json({ message: "database connection has failed" });
+        return;
+      }
 
-        if (!user) {
-          res.status(404).json({ error: "user has not been found" });
-        } else {
-          res.status(200).json({ user });
-        }
+      try {
+        const db = client.db();
+        const user = await db.collection("accounts").findOne({
+          password: password,
+          email: email,
+        });
+
+        res.status(201).json({ user });
+        client.close();
+      } catch (err) {
+        res.status(500).json({ message: "something is wrong" });
       }
-      default: {
-        res.status(200).json({ error: "post method is available" });
-      }
+      break;
     }
-  } catch (err) {
-    console.log(err);
+    default: {
+      res.status(200).json({ error: "post method is available" });
+      break;
+    }
   }
 }
 

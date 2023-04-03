@@ -92,6 +92,7 @@ function SignInPage() {
 export default SignInPage;
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
+
   if (!session) {
     return {
       props: {},
