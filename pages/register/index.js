@@ -27,7 +27,7 @@ function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(user);
-    fetch("http://localhost:3000/api/user", {
+    fetch(`${process.env.NEXTAUTH_URL}/api/user`, {
       method: "POST",
       body: JSON.stringify(user),
       headers: {

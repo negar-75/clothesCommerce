@@ -1,10 +1,9 @@
 import { signIn, getSession } from "next-auth/react";
-
+import { getCsrfToken } from "next-auth/react";
 import { useRef } from "react";
-
 import Link from "next/link";
 
-function SignInPage() {
+function SignInPage(props) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -19,11 +18,14 @@ function SignInPage() {
         </p>
       </div>
       <h2 className="mb-10">Sign in</h2>
-      <form className="items-center  flex flex-col gap-6 shadow-md bg-white py-10 px-8 lg:px-20 rounded-lg mx-3">
+      <form
+        className="items-center  flex flex-col gap-6 shadow-md bg-white py-10 px-8 lg:px-20 rounded-lg mx-3"
+        action=""
+      >
         <input
           name="csrfToken"
           type="hidden"
-          // defaultValue={csrfToken}
+          defaultValue={props.csrfToken}
         />
         <div className="flex gap-2 flex-col lg:w-[300px] w-[95%]">
           <label htmlFor="email">Email</label>
@@ -102,6 +104,7 @@ export async function getServerSideProps(ctx) {
   return {
     props: {
       session,
+      csrfToken: await getCsrfToken(ctx),
     },
     redirect: { destination: "/" },
   };

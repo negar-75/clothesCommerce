@@ -16,11 +16,11 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const res = await fetch("http://localhost:3000/api/auth/signin", {
-          mode: "no-cors",
+        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/signin`, {
           method: "POST",
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
         });
 
         const user = await res.json();
