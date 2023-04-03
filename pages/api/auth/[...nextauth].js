@@ -49,5 +49,6 @@ export const authOptions = {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
+  callbackUrl: "https://clothes-commerce-delta.vercel.app/api/auth/signin",
 };
 export default NextAuth(authOptions);
