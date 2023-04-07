@@ -15,12 +15,15 @@ export const authOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
+        const payload = {
+          email: credentials.email,
+          password: credentials.password,
+        };
         const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/signin`, {
           method: "POST",
-          body: JSON.stringify(credentials),
+          body: JSON.stringify(payload),
           headers: { "Content-Type": "application/json" },
-          credentials: "include",
         });
 
         const user = await res.json();
@@ -34,6 +37,7 @@ export const authOptions = {
     }),
   ],
   callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {},
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
