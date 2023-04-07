@@ -37,7 +37,6 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {},
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
