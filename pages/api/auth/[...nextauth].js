@@ -9,8 +9,8 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET,
     }),
     CredentialsProvider({
-      id: "username-login", // <- add this line
-      name: "Login",
+      name: "Credentials",
+
       credentials: {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
@@ -21,6 +21,7 @@ export const authOptions = {
           email: credentials.email,
           password: credentials.password,
         };
+        console.log("I am working");
         const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/signin`, {
           method: "POST",
           body: JSON.stringify(payload),
