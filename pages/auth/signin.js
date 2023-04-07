@@ -47,7 +47,7 @@ function SignInPage(props) {
           className="border-2 w-[200px] h-[40px] uppercase"
           onClick={(e) => {
             e.preventDefault();
-            signIn("credentials", {
+            signIn("username-login", {
               email: emailRef.current,
               password: passwordRef.current,
             });

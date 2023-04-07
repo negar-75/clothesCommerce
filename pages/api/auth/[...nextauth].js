@@ -9,13 +9,14 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET,
     }),
     CredentialsProvider({
-      name: "Credentials",
-
+      id: "username-login", // <- add this line
+      name: "Login",
       credentials: {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
+        console.log(credentials);
         const payload = {
           email: credentials.email,
           password: credentials.password,
