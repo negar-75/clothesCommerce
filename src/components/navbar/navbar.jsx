@@ -9,7 +9,7 @@ function Navbar() {
   const [userIsLogged, setUserIsLogged] = useState(false);
   const store = useSelector((state) => state);
   const [cart, setCart] = useState([]);
-  console.log(data);
+
   useEffect(() => {
     if (data?.user?._id || data?.id) {
       if (store.carts.hasOwnProperty(data?.user?._id || data?.id)) {
