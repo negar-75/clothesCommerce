@@ -16,12 +16,10 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials, req) => {
-        const client = await MongoClient.connect(
-          "mongodb+srv://nasirinegar:AjxC9qQSf8ybeDOv@cluster0.60qjwcn.mongodb.net/users?retryWrites=true&w=majority"
-        );
+        const client = await MongoClient.connect(process.env.MONGODB_URI);
 
         try {
-          const db = client.db();
+          const db = client.db("users");
           const user = await db.collection("accounts").findOne({
             email: credentials.email,
             password: credentials.password,
