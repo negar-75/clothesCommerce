@@ -27,7 +27,7 @@ export const authOptions = {
             password: credentials.password,
           });
           if (user) {
-            return user;
+            return { user: user };
           } else {
             return null;
           }
