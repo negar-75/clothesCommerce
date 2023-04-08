@@ -22,19 +22,24 @@ export const authOptions = {
           password: credentials.password,
         };
         console.log("I am working");
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/signin`, {
-          method: "POST",
-          body: JSON.stringify(payload),
-          headers: { "Content-Type": "application/json" },
-        });
+        // const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/signin`, {
+        //   method: "POST",
+        //   body: JSON.stringify(payload),
+        //   headers: { "Content-Type": "application/json" },
+        // });
 
-        const user = await res.json();
-
-        if (res.ok && user) {
+        const user = { email: "test1@test1.com", password: "123456" };
+        if (
+          user.email === credentials.email &&
+          user.password === credentials.password
+        ) {
           return user;
-        }
+        } else return null;
+        // if (res.ok && user) {
+        //   return user;
+        // }
 
-        return null;
+        // return null;
       },
     }),
   ],

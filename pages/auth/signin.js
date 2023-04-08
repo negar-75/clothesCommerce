@@ -46,10 +46,12 @@ function SignInPage(props) {
         <button
           className="border-2 w-[200px] h-[40px] uppercase"
           onClick={(e) => {
+            console.log(process.env.NEXTAUTH_URL);
             e.preventDefault();
             signIn("credentials", {
               email: emailRef.current,
               password: passwordRef.current,
+              // callbackUrl: `,
             });
           }}
         >

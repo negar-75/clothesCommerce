@@ -1,7 +1,6 @@
 import { MongoClient } from "mongodb";
 
 async function handler(req, res) {
-  console.log(req);
   switch (req.method) {
     case "POST": {
       const email = req.body.email;
