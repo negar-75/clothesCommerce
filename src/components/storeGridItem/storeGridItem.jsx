@@ -8,7 +8,10 @@ function StoreGridItem({ item }) {
   const { data } = useSession();
 
   return (
-    <div className="h-[550px] flex items-center flex-col">
+    <div
+      className="h-[550px] flex items-center flex-col"
+      data-aos="fade-in"
+    >
       <div className=" h-[400px] w-[300px] mb-3 ">
         <img
           src={item.image}

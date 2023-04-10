@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useState, useEffect, createRef, useRef } from "react";
 import { Inter } from "@next/font/google";
 import Navbar from "../src/components/navbar/navbar";
 import HeaderContainer from "../src/components/headerContainer/headerContainer";
@@ -7,10 +8,47 @@ import Context from "../libs/context.js";
 import RedBanner from "../src/components/redBanner/redBanner";
 import CategoriesSlideShow from "../src/components/categoriesSlideShow/categoriesSlideShow";
 import Footer from "../src/components/footer/footer";
+import { useMediaQuery } from "react-responsive";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ data, store, categories, footerNavigation }) {
+  const svgRef = useRef(null);
+  const pathRef = useRef(null);
+  let pathLength = null;
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  useEffect(() => {
+    // Get the path element and its total length
+    const path = pathRef.current;
+    pathLength = path.getTotalLength();
+    // Set the initial stroke dash array and offset values
+    path.style.strokeDasharray = pathLength + " " + pathLength;
+    path.style.strokeDashoffset = pathLength;
+
+    // Set the reference to the path length
+    svgRef.current = pathLength;
+
+    // Add event listener to detect scrolling
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      // Remove event listener on unmount
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  const handleScroll = () => {
+    // Calculate scroll percentage and stroke dash offset
+    const scrollPercent =
+      (document.documentElement.scrollTop + document.body.scrollTop) /
+      (document.documentElement.scrollHeight -
+        document.documentElement.clientHeight);
+    const draw = pathLength * scrollPercent;
+    pathRef.current.style.strokeDashoffset = pathLength - draw;
+  };
+
   return (
     <div className="relative h-full">
       <Head>
@@ -28,13 +66,53 @@ export default function Home({ data, store, categories, footerNavigation }) {
           href="/favicon.ico"
         />
       </Head>
+      <div className="line-container w-full h-[100%] text-left absolute z-[-100] ">
+        {isDesktopOrLaptop && (
+          <svg
+            viewBox="0 0 823 2564"
+            fill="none"
+            preserveAspectRatio="xMidYMid meet"
+            height="2500"
+            className="inline-block h-[100%] w-[100%] mt-[5%]"
+            ref={svgRef}
+          >
+            <path
+              d="M80 2C75.6283 16.5722 57.7662 27.3465 48 38.4444C24.9411 64.6477 11.6937 91.3807 4.44444 125.556C-15.5513 219.821 86.5405 263.976 159.111 294.444C210.179 315.885 322.717 348.487 335.111 413.556C345.175 466.391 310.736 517.899 286.222 561.111C244.174 635.231 208.989 723.107 216.889 810C228.217 934.609 381.573 1043.45 465.778 1120.22C544.604 1192.09 675.433 1292.51 654.667 1417.11C641.335 1497.1 534.7 1525.99 516.889 1609.11C496.446 1704.51 614.539 1777.31 665.778 1842C730.46 1923.67 784.575 2001 812 2101.56C826.028 2152.99 828.106 2185.57 777.778 2214.44C729.236 2242.3 671.658 2256.51 620 2277.56C494.008 2328.89 392.575 2445.77 328 2562"
+              stroke="black"
+              ref={pathRef}
+              height={"100%"}
+            />
+          </svg>
+        )}
+        {isTabletOrMobile && (
+          <svg
+            viewBox="0 0 279 5522"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid meet"
+            className="inline-block h-[100%] w-[100%]  "
+            ref={svgRef}
+          >
+            <path
+              d="M1 1C316.542 1 180.781 308.452 100.556 472.111C37.1211 601.517 55.5897 728.3 160.111 824.111C253.851 910.039 209 1095.12 209 1208.11C209 1342.64 202.748 1479.03 209 1613.44C211.144 1659.54 244.679 1712.25 264.111 1753.89C305.738 1843.09 242.304 1922.03 201.889 1994.78C138.842 2108.26 47.9928 2283.16 113 2417C171.018 2536.45 229.486 2615.24 225 2756.56C221.36 2871.2 132.343 2949.95 106.778 3057.89C89.5271 3130.73 90.3581 3222.58 97.8889 3297.89C105.798 3376.98 168.076 3449.89 205.444 3517.44C236.495 3573.57 225 3647.58 225 3709.44C225 3782.51 228.959 3853.26 199.222 3921.89C169.964 3989.41 107.054 4070.79 97.8889 4144.11C81.4706 4275.46 108.364 4392.24 177 4505C319.77 4739.55 107.63 4972.84 160.111 5209C172.43 5264.44 209 5322.78 209 5377C209 5427.34 185.932 5521 257 5521"
+              stroke="black"
+              stroke-linecap="round"
+              ref={pathRef}
+              height={"100%"}
+            />
+          </svg>
+        )}
+      </div>
       <header>
         <Navbar />
         <HeaderContainer data={data} />
       </header>
       <Context.Provider value={store}>
         <main>
-          <div className="text-center my-12">
+          <div
+            className="text-center my-12"
+            data-aos="fade-down"
+          >
             <h2 className="mb-2 text-4xl font-semibold tracking-wide uppercase">
               FALL READY NOW!
             </h2>
