@@ -41,7 +41,7 @@ function SVG({ desktopPath, mobilePath }) {
     <div className="line-container w-full h-[100%] text-left absolute z-[-100] ">
       {isDesktopOrLaptop && (
         <svg
-          viewBox="0 0 823 2564"
+          viewBox="0 0 1191 2410"
           fill="none"
           preserveAspectRatio="xMidYMid meet"
           className="inline-block h-[100%] w-[100%] mt-[0%] overflow-visible"
