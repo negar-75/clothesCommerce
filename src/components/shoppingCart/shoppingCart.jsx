@@ -20,17 +20,20 @@ function ShoppingCart({ cartItems, id }) {
   };
 
   const totalPrice = getTotalPrice();
-
+  console.log(process.env.NEXT_PUBLIC_NEXTAUTH_URL);
   useEffect(() => {
     try {
       const storeTotalPrice = async () => {
-        const res = await fetch(`http://localhost:3000/api/session`, {
-          method: "POST",
-          body: JSON.stringify({ totalPrice }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/session`,
+          {
+            method: "POST",
+            body: JSON.stringify({ totalPrice }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         const result = await res.json();
         console.log(result);
       };
