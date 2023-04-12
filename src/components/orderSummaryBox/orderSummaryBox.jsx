@@ -20,7 +20,7 @@ function OrderSummaryBox({ totalPrice }) {
           onClick={() =>
             router.push({
               pathname: "/cart/checkout",
-              query: { price: totalPrice },
+              // query: { price: totalPrice },
             })
           }
         >

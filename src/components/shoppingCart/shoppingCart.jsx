@@ -18,6 +18,27 @@ function ShoppingCart({ cartItems, id }) {
       0
     );
   };
+
+  const totalPrice = getTotalPrice();
+
+  useEffect(() => {
+    try {
+      const storeTotalPrice = async () => {
+        const res = await fetch(`http://localhost:3000/api/session`, {
+          method: "POST",
+          body: JSON.stringify({ totalPrice }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const result = await res.json();
+        console.log(result);
+      };
+      storeTotalPrice();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [totalPrice]);
   if (cartItems?.length === 0 || !cartItems) {
     return <h3 className="text-center">No item selected</h3>;
   }
@@ -88,7 +109,7 @@ function ShoppingCart({ cartItems, id }) {
         </tbody>
       </table>
       <DiscountBox />
-      <OrderSummaryBox totalPrice={getTotalPrice()} />
+      <OrderSummaryBox totalPrice={totalPrice} />
     </div>
   );
 }

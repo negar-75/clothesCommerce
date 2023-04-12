@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+
 import { useWidth } from "../../../hooks/useWidth";
 
-function ContactInfo() {
-  const {
-    query: { price },
-  } = useRouter();
+function ContactInfo({ price }) {
   const width = useWidth();
   const wordsPerLine = width > 697 ? 7 : 3;
 
