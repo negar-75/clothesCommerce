@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
-function SVG({ desktopPath, mobilePath }) {
+function SVG({ desktopPath, desktopViewBox, mobilePath, mobileViewBox }) {
   const svgRef = useRef(null);
   const pathRef = useRef(null);
   const [pathLength, setPathLength] = useState(null);
@@ -18,7 +18,7 @@ function SVG({ desktopPath, mobilePath }) {
       (document.documentElement.scrollHeight -
         document.documentElement.clientHeight);
 
-    const draw = length * scrollPercent * 1.001;
+    const draw = length * scrollPercent;
 
     path.style.strokeDashoffset = length - draw;
   };
@@ -35,13 +35,13 @@ function SVG({ desktopPath, mobilePath }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [pathLength]);
 
   return (
     <div className="line-container w-full h-[100%] text-left absolute z-[-100] ">
       {isDesktopOrLaptop && (
         <svg
-          viewBox="0 0 1191 2410"
+          viewBox={desktopViewBox}
           fill="none"
           preserveAspectRatio="xMidYMid meet"
           className="inline-block h-[100%] w-[100%] mt-[0%] overflow-visible"
@@ -56,7 +56,7 @@ function SVG({ desktopPath, mobilePath }) {
       )}
       {isTabletOrMobile && (
         <svg
-          viewBox="0 0 318 5495"
+          viewBox={mobileViewBox}
           fill="none"
           preserveAspectRatio="xMidYMid meet"
           className="inline-block h-[100%] w-[100%] overflow-visible "
