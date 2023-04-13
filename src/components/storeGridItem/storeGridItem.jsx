@@ -16,8 +16,10 @@ function StoreGridItem({ item }) {
   const getTotalQuantity = (id) => {
     if (data) {
       const clientId = data?.user?._id || data?.id;
-      const item = state.carts[clientId].find((item) => item.id === id);
-      return item ? item.quantity : 0;
+      if (state.carts.hasOwnProperty(clientId)) {
+        const item = state?.carts[clientId].find((item) => item.id === id);
+        return item ? item.quantity : 0;
+      } else return 0;
     } else {
       const item = state.items.find((product) => product.id === id);
       return item ? item.quantity : 0;
@@ -25,7 +27,7 @@ function StoreGridItem({ item }) {
   };
 
   const quantity = getTotalQuantity(item.id);
-
+  console.log(quantity);
   return (
     <div
       className="h-[550px] flex items-center flex-col"
