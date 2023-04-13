@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import DiscountBox from "../discountBox/discountBox";
 import OrderSummaryBox from "../orderSummaryBox/orderSummaryBox";
 import { removeFromCart } from "../../../store/slices/cart.slice";
 import { useDispatch } from "react-redux";
-
 import QuantityBox from "../quantityBox/quantityBox";
 
 function ShoppingCart({ cartItems, id }) {
-  console.log(id);
-
   const dispatch = useDispatch();
 
   const getTotalPrice = () => {

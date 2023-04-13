@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useState, useEffect, createRef, useRef } from "react";
 import { Inter } from "@next/font/google";
 import Navbar from "../src/components/navbar/navbar";
 import HeaderContainer from "../src/components/headerContainer/headerContainer";
@@ -8,7 +7,6 @@ import Context from "../libs/context.js";
 import RedBanner from "../src/components/redBanner/redBanner";
 import CategoriesSlideShow from "../src/components/categoriesSlideShow/categoriesSlideShow";
 import Footer from "../src/components/footer/footer";
-import { useMediaQuery } from "react-responsive";
 import SVG from "../src/components/svg/svg";
 
 const inter = Inter({ subsets: ["latin"] });
