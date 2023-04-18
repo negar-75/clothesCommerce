@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import { PersistGate } from "redux-persist/integration/react";
 import { SessionProvider } from "next-auth/react";
+import "animate.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

@@ -11,7 +11,12 @@ function CategoriesGridItem({ image, title, desc, href }) {
         />
       </div>
 
-      <h3>{title}</h3>
+      <h3
+        data-aos="zoom-in"
+        data-aos-duration="800"
+      >
+        {title}
+      </h3>
       <div className="mb-2 px-4 text-center  ">{wordCounter(desc)}</div>
       <a
         className="mt-4 uppercase font-semibold tracking-wide text-xs
