@@ -52,7 +52,7 @@ function Navbar() {
   );
 
   return (
-    <div className=" flex items-center lg:px-9 lg:py-1 px-2 py-3">
+    <div className=" flex items-center lg:px-9 lg:py-1 px-2 ">
       <span className="cursor-pointer hidden md:block">My closet</span>
       {/* <Logo /> */}
       {userIsLogged && <MobileSidebar setUserIsLogged={setUserIsLogged} />}
