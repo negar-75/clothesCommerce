@@ -8,7 +8,7 @@ function MobileSidebar() {
     <>
       <nav className="md:hidden">
         <div
-          className={`fixed left-[20px] top-[17px] z-[100] transition-all duration-[0.7s]  ${
+          className={`fixed left-[20px] top-[27px] z-[100] transition-all duration-[0.7s]  ${
             sidebarIsOpen && "left-[85%]"
           } `}
           onClick={() => setSidebarIsOpen((pre) => !pre)}
