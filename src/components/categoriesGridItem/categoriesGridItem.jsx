@@ -1,4 +1,3 @@
-import Image from "next/image";
 import wordCounter from "../../../functions/wordCounter";
 
 function CategoriesGridItem({ image, title, desc, href }) {

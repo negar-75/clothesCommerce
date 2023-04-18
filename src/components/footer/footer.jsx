@@ -1,10 +1,11 @@
 import SignupBox from "../signupBox/signupBox";
+import { footerNavigation } from "../../../data/data.json";
 
-function Footer({ data }) {
+function Footer() {
   return (
     <div className="flex flex-col px-5 py-10 justify-between md:flex-row md:px-10">
       <div className="flex gap-2 md:gap-16">
-        {Object.keys(data).map((key, index) => {
+        {Object.keys(footerNavigation).map((key, index) => {
           return (
             <div key={index}>
               <h3 className="text-sm font-medium text-gray-900">{key}</h3>
@@ -12,7 +13,7 @@ function Footer({ data }) {
                 role="list"
                 className="mt-6 space-y-6"
               >
-                {data[key].map((item, index) => (
+                {footerNavigation[key].map((item, index) => (
                   <li
                     key={index}
                     className="text-sm"

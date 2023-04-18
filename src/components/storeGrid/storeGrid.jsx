@@ -1,7 +1,6 @@
 import Context from "../../../libs/context";
 import { useContext } from "react";
 import StoreGridItem from "../storeGridItem/storeGridItem";
-import { useState } from "react";
 
 function StoreGrid() {
   const data = useContext(Context);

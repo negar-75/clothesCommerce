@@ -2,17 +2,9 @@ import { useState, useEffect } from "react";
 
 import { useWidth } from "../../../hooks/useWidth";
 
-function ContactInfo({ price }) {
+function ContactInfo({ setInformation, information }) {
   const width = useWidth();
   const wordsPerLine = width > 697 ? 7 : 3;
-
-  const [information, setInformation] = useState({
-    firstName: "",
-    lastName: "",
-    adress: "",
-    zipCode: "",
-    phone: "",
-  });
 
   const [formattedAdress, setFormattedAdress] = useState();
 
@@ -117,7 +109,7 @@ function ContactInfo({ price }) {
           </div>
           <div className="flex justify-between">
             <span className="font-semibold">Total price</span>
-            <span>{price}$</span>
+            <span>{information.totalPrice}$</span>
           </div>
         </div>
       </div>

@@ -100,6 +100,23 @@ const cartSlice = createSlice({
         state.items.splice(index, 1);
       }
     },
+
+    clearCart: (state, action) => {
+      if (action.payload.clientId) {
+        return {
+          ...state,
+          carts: {
+            ...state.carts,
+            [action.payload.clientId]: [],
+          },
+        };
+      } else {
+        return {
+          ...state,
+          items: [],
+        };
+      }
+    },
   },
 });
 
@@ -110,4 +127,5 @@ export const {
   incrementQuantity,
   decrementQuantity,
   removeFromCart,
+  clearCart,
 } = cartSlice.actions;

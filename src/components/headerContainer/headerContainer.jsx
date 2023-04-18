@@ -3,9 +3,9 @@ import HeroImage from "../heroImage/heroImage";
 import DiscountImage from "../discountImage/discountImage";
 function HeaderContainer({ data }) {
   return (
-    <div className="flex flex-col   ">
-      <div className="nav-container flex justify-between px-6  h-[5vh] ">
-        <nav className="hidden lg:flex flex-row space-x-8 items-center ">
+    <div className="flex flex-col  ">
+      <div className="lg:flex justify-between px-6 h-[5vh]  hidden">
+        <nav className=" flex flex-row space-x-8 items-center">
           {data.map((item) => (
             <a
               href={item.link}

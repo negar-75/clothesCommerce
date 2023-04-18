@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
 function SVG({ desktopPath, desktopViewBox, mobilePath, mobileViewBox }) {
-  const svgRef = useRef(null);
   const pathRef = useRef(null);
   const [pathLength, setPathLength] = useState(null);
   const isDesktopOrLaptop = useMediaQuery({
@@ -45,7 +44,6 @@ function SVG({ desktopPath, desktopViewBox, mobilePath, mobileViewBox }) {
           fill="none"
           preserveAspectRatio="xMidYMid meet"
           className="inline-block h-[100%] w-[100%] mt-[0%] overflow-visible"
-          ref={svgRef}
         >
           <path
             d={desktopPath}
@@ -60,7 +58,6 @@ function SVG({ desktopPath, desktopViewBox, mobilePath, mobileViewBox }) {
           fill="none"
           preserveAspectRatio="xMidYMid meet"
           className="inline-block h-[100%] w-[100%] overflow-visible "
-          ref={svgRef}
         >
           <path
             d={mobilePath}

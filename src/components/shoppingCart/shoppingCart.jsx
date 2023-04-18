@@ -21,7 +21,7 @@ function ShoppingCart({ cartItems, id }) {
     try {
       const storeTotalPrice = async () => {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/session`,
+          `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/totalPrice`,
           {
             method: "POST",
             body: JSON.stringify({ totalPrice: totalPrice }),
@@ -30,7 +30,6 @@ function ShoppingCart({ cartItems, id }) {
             },
           }
         );
-        const result = await res.json();
       };
       storeTotalPrice();
     } catch (error) {

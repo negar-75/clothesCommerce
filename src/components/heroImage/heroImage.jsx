@@ -2,16 +2,16 @@ import Image from "next/image";
 
 function HeroImage() {
   return (
-    <div className="top h-4/5 relative">
+    <div className="top h-4/5 relative ">
       <Image
         src="/woman.jpg"
         alt="woman shopping"
         fill
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", position: "absolute" }}
         priority
       />
       <div
-        className="absolute z-10 bg-white opacity-90 top-1/2 left-1/2 
+        className="absolute z-100 bg-white opacity-90 top-1/2 left-1/2 
          transform -translate-x-1/2 -translate-y-1/2 flex flex-col 
          items-center justify-center py-5 px-7"
       >

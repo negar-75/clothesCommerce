@@ -2,7 +2,6 @@ import React from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 import { to } from "react-spring";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 function AnimatedDiv({ children }) {
   const [{ x }, set] = useSpring(() => ({

@@ -47,7 +47,7 @@ export default Cart;
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
-  console.log(session);
+
   if (session) {
     return {
       props: {

@@ -1,5 +1,23 @@
-import { useState } from "react";
-function Payment() {
+import { useState, useEffect } from "react";
+import { clearCart } from "../../../store/slices/cart.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/dist/client/router";
+function Payment({ information }) {
+  const router = useRouter();
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { data } = useSession();
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    if (data?.id || data?.user?._id) {
+      setCart(state.carts[data?.id || data?.user?._id]);
+    } else {
+      setCart(state.items);
+    }
+  }, []);
+
   const [card, setCard] = useState({
     cardNumber: "",
     cardName: "",
@@ -7,6 +25,33 @@ function Payment() {
     expireMonth: "",
     CVV2: "",
   });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/information`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            information: information,
+            cart: cart,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      router.push("/orders");
+      dispatch(
+        clearCart({
+          clientId: data?.user?._id || data?.id || undefined,
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleInput = (e) => {
     setCard({
@@ -54,11 +99,15 @@ function Payment() {
           </div>
         </div>
         <div className="flex justify-center ">
-          <form className="flex flex-col gap-5  w-[80%]">
+          <form
+            className="flex flex-col gap-5 w-[80%] "
+            onSubmit={handleSubmit}
+          >
             <div>
               <input
                 type="text"
                 autoFocus
+                required
                 name="cardNumber"
                 value={cc_format(card.cardNumber)}
                 placeholder="xxxx-xxxx-xxxx-xxxx"
@@ -68,10 +117,11 @@ function Payment() {
             </div>
             <div>
               <input
-                type="number"
+                type="text"
                 placeholder="Cart name"
                 className="w-[100%] rounded-md"
                 name="cardName"
+                required
                 onChange={handleInput}
               />
             </div>
@@ -85,12 +135,14 @@ function Payment() {
                       className=" rounded-md w-[80px]"
                       placeholder="Month"
                       name="expireMonth"
+                      required
                       onChange={handleInput}
                     />
                   </div>
                   <div>
                     <input
                       type="number"
+                      required
                       className=" rounded-md w-[80px]"
                       placeholder="Year"
                       name="expireDate"
@@ -105,6 +157,7 @@ function Payment() {
                 <div>
                   <input
                     type="number"
+                    required
                     className=" rounded-md w-[80px]"
                     placeholder="CVV2"
                     name="CVV2"

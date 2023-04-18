@@ -3,7 +3,7 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from "../../../store/slices/cart.slice";
-import { useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
 
@@ -11,7 +11,6 @@ function StoreGridItem({ item }) {
   const dispatch = useDispatch();
   const { data } = useSession();
   const state = useSelector((state) => state);
-  const [buttonIsClicked, setButtonIsClicked] = useState(false);
 
   const getTotalQuantity = (id) => {
     if (data) {
@@ -27,7 +26,7 @@ function StoreGridItem({ item }) {
   };
 
   const quantity = getTotalQuantity(item.id);
-  console.log(quantity);
+
   return (
     <div
       className="h-[550px] flex items-center flex-col"
