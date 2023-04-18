@@ -35,7 +35,7 @@ function Navbar() {
   }, [status]);
 
   const notLoggedInUser = (
-    <div className=" flex gap-3 ml-auto mr-5 py-1">
+    <div className=" flex gap-3 ml-auto mr-5 py-5">
       <a
         href="/auth/signin"
         className="uppercase hover:text-stone-500"
