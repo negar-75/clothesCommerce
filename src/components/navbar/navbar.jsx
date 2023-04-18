@@ -35,7 +35,7 @@ function Navbar() {
   }, [status]);
 
   const notLoggedInUser = (
-    <div className=" flex gap-3 ml-auto mr-5 py-5">
+    <div className=" flex gap-3 ml-auto mr-5 py-5 ">
       <a
         href="/auth/signin"
         className="uppercase hover:text-stone-500"
@@ -58,7 +58,7 @@ function Navbar() {
       {userIsLogged && <MobileSidebar setUserIsLogged={setUserIsLogged} />}
 
       {userIsLogged ? <LoggedInUserProfile /> : notLoggedInUser}
-      <div className="relative flex items-center ">
+      <div className="relative flex items-center py-5  ">
         <Link
           href="/cart"
           className="cursor-pointer hover:text-gray-600 uppercase font-medium text-sm"
@@ -67,7 +67,7 @@ function Navbar() {
         </Link>
         <span
           className=" bg-red-600 text-white
-           h-4 w-4 absolute rounded-full right-3 top-2 flex
+           h-4 w-4 absolute rounded-full right-3 top-5 flex
            items-center justify-center font-bold text-xs"
         >
           {getItemsCount()}
