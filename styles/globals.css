@@ -118,9 +118,11 @@ body {
   display:none;
 }
 
-.drop-down-menu li:hover span {
-  transform: translateX(4px) !important;
+ul {
+  margin: 0;
 }
+
+
 .drop-down-menu .drop-down-item-1 {
   transform-origin: top center;
   animation: slideDown 300ms 60ms ease-in-out forwards;

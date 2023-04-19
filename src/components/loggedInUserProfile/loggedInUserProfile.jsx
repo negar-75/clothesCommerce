@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -48,35 +49,67 @@ function LoggedInUserProfile() {
 
         <ul className="drop-down-menu hidden md:block">
           <li className="drop-down-item-1  ">
-            <FontAwesomeIcon
-              icon={faTableColumns}
-              style={{
-                marginRight: "10px",
-                marginLeft: "10px",
-              }}
-            />
-            <span>Dashboard</span>
+            <Link
+              href={""}
+              className=" w-full flex items-center"
+            >
+              <FontAwesomeIcon
+                icon={faTableColumns}
+                style={{
+                  marginRight: "11px",
+                  marginLeft: "10px",
+                }}
+              />
+              <span
+                className="hover:translate-x-1 transition-all
+                block "
+              >
+                Dashboard
+              </span>
+            </Link>
           </li>
           <li className="drop-down-item-2">
-            <FontAwesomeIcon
-              icon={faListDots}
-              style={{
-                marginRight: "10px",
-                marginLeft: "10px",
-              }}
-            />
-            <span> Orders</span>
+            <Link
+              href={"/orders"}
+              className=" w-full flex items-center"
+            >
+              <FontAwesomeIcon
+                icon={faListDots}
+                style={{
+                  marginRight: "8px",
+                  marginLeft: "10px",
+                }}
+              />
+              <span
+                className="hover:translate-x-1 transition-all
+                block "
+              >
+                {" "}
+                Orders
+              </span>
+            </Link>
           </li>
           <li className="drop-down-item-3">
-            <FontAwesomeIcon
-              icon={faUser}
-              style={{
-                marginRight: "10px",
-                marginLeft: "10px",
-              }}
-            />
+            <Link
+              href={""}
+              className=" w-full flex items-center"
+            >
+              <FontAwesomeIcon
+                icon={faUser}
+                style={{
+                  marginRight: "10px",
+                  marginLeft: "10px",
+                }}
+              />
 
-            <span> Profile</span>
+              <span
+                className="hover:translate-x-1 transition-all
+                block "
+              >
+                {" "}
+                Profile
+              </span>
+            </Link>
           </li>
           <li
             className="drop-down-item-4 pb-4"
@@ -92,7 +125,13 @@ function LoggedInUserProfile() {
               }}
             />
 
-            <span> Sign out</span>
+            <span
+              className="hover:translate-x-1 transition-all
+                block "
+            >
+              {" "}
+              Sign out
+            </span>
           </li>
         </ul>
       </div>

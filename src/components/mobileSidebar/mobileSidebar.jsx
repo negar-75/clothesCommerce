@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import { signOut } from "next-auth/react";
 
 function MobileSidebar() {
@@ -59,13 +60,15 @@ function MobileSidebar() {
               sidebarIsOpen && "translate-x-0 cursor-pointer"
             } `}
           >
-            <span
-              className="after:content-[''] after:absolute 
+            <Link href={"/orders"}>
+              <span
+                className="after:content-[''] after:absolute 
              after:-bottom-2 after:inline-block after:h-[2px] after:w-[70%] 
              after:scale-x-0 after:bg-stone-200 after:left-[15%] hover:after:scale-x-100 after:transition-all after:duration-[0.7s]"
-            >
-              Orders
-            </span>
+              >
+                Orders
+              </span>
+            </Link>
           </li>
           <li
             className={`-translate-x-[100%] transition-all duration-[0.7s] ${
