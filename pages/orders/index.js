@@ -11,7 +11,7 @@ function Orders({ data, id }) {
 
   return (
     <Layout>
-      <div className="w-full bg-stone-200 mt-10 px-5 py-1 md:px-16 mb-16">
+      <div className=" bg-stone-200 mt-10 px-5 py-1 md:px-16 mb-16">
         <p className="text-xs">
           <Link href="/">
             <span className="text-gray-500 ">Home/ </span>
@@ -19,62 +19,57 @@ function Orders({ data, id }) {
           orders
         </p>
       </div>
-      <main className="px-9">
-        <div className="divide-y-2">
-          <div className="flex divide-x-2 gap-4 divide-stone-300 mb-10">
-            <p>
-              <span className="text-stone-500">Order Date : </span>
-              {data.information.date}
-            </p>
 
-            <p className="text-green-800">
-              <FontAwesomeIcon
-                icon={faTruckFast}
-                beatFade
-                style={{
-                  color: "green",
-                  marginRight: "10px",
-                  marginLeft: "10px",
-                }}
-              />
-              Estimated delivery :{" "}
-              {deliveryDate.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}{" "}
-            </p>
-          </div>
-          <div className="flex gap-4 flex-col md:flex-row">
-            {data.cart.map((item) => (
-              <div className="flex items-end gap-4 p-3 justify-center ">
-                <img
-                  src={item.image}
-                  className="w-[100px] h-[130px] object-cover rounded-md border-2 p-1 border-stone-500 "
-                />
-                <div className="flex flex-col items-baseline ">
-                  <span>{item.title}</span>
-                  <span className="align-middle">
-                    <span className="text-[10px]">✗</span>
-                    {item.quantity}
-                  </span>
-                  <span>{item.price}$</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="flex flex-col gap-4  p-3">
-            <h4>Deliver to :</h4>
-            <span>
-              {data.information.firstName.toUpperCase() +
-                "  " +
-                data.information.lastName.toUpperCase()}
-            </span>
-            <span>{data.information.adress.toUpperCase()} </span>
-            <span>{data.information.phone}</span>
-          </div>
+      <div className="divide-y-2 px-5 w-[100%] ">
+        <div className="flex md:divide-x-2 gap-4 divide-stone-300 md:mb-10 flex-col md:flex-row mb-6">
+          <p>
+            <span className="text-stone-500">Order Date : </span>
+            {data.information.date}
+          </p>
+
+          <p className="text-green-800">
+            <FontAwesomeIcon
+              icon={faTruckFast}
+              beatFade
+              className="md:mx-2 text-green-700 mr-2"
+            />
+            Estimated delivery :{" "}
+            {deliveryDate.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}{" "}
+          </p>
         </div>
-      </main>
+        <div className="flex overflow-x-scroll py-3 ">
+          {data.cart.map((item) => (
+            <div className="flex items-center md:gap-4 md:p-3  gap-2 md:flex-[0_0_18%] flex-[0_0_75%]  mr-1 ">
+              <img
+                src={item.image}
+                className="w-[160px] h-[230px] object-cover rounded-md border-2 p-1 border-stone-500 "
+              />
+              <div className="flex flex-col items-baseline  text-lg">
+                <span className="font-semibold">{item.title}</span>
+                <span className="align-middle">
+                  <span className="text-[10px]">✗</span>
+                  {item.quantity}
+                </span>
+                <span>{item.price * item.quantity}$</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 px-5">
+        <h4>Deliver to :</h4>
+        <span>
+          {data.information.firstName.toUpperCase() +
+            "  " +
+            data.information.lastName.toUpperCase()}
+        </span>
+        <span>{data.information.adress.toUpperCase()} </span>
+        <span>{data.information.phone}</span>
+      </div>
     </Layout>
   );
 }
