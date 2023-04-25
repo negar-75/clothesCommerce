@@ -41,7 +41,7 @@ function MobileSidebar() {
           sidebarIsOpen ? "w-screen" : "w-0 "
         }  transition-all duration-[0.7s]  fixed top-0 left-0 right-0 bottom-0 z-[60] flex justify-center bg-black  `}
       >
-        <ul class=" w-[80%] h-full  text-3xl space-y-20 mt-16 text-center overflow-hidden text-stone-200">
+        <ul className=" w-[80%] h-full  text-3xl space-y-20 mt-16 text-center overflow-hidden text-stone-200">
           <li
             className={`-translate-x-[100%] transition-all duration-[0.7s] ${
               sidebarIsOpen && " translate-x-0 cursor-pointer  "
