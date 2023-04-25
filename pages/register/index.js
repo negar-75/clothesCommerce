@@ -179,7 +179,10 @@ function Register() {
 
           <span>Google</span>
         </button>
-        <button className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px] ">
+        <button
+          className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px] "
+          onClick={() => signIn("facebook")}
+        >
           <img
             src="/facebook_icon.png"
             className="w-[30px] h-[30px] ml-2"
