@@ -170,7 +170,11 @@ function Register() {
         <h3>Or Register with:</h3>
         <button
           className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px]"
-          onClick={() => signIn("google")}
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/`,
+            })
+          }
         >
           <img
             src="/google_icon.png"
@@ -181,7 +185,11 @@ function Register() {
         </button>
         <button
           className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px] "
-          onClick={() => signIn("facebook")}
+          onClick={() =>
+            signIn("facebook", {
+              callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/`,
+            })
+          }
         >
           <img
             src="/facebook_icon.png"
@@ -207,3 +215,5 @@ function Register() {
 }
 
 export default Register;
+
+export async function getServerSideProps(ctx) {}
