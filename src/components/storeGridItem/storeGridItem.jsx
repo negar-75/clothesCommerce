@@ -3,7 +3,7 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from "../../../store/slices/cart.slice";
-
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
 
@@ -32,10 +32,11 @@ function StoreGridItem({ item }) {
       className="h-[550px] flex items-center flex-col"
       // data-aos="fade-in"
     >
-      <div className=" h-[400px] w-[300px] mb-3 ">
-        <img
+      <div className=" h-[400px] w-[300px] mb-3 relative">
+        <Image
           src={item.image}
           className="w-[100%] object-cover h-[100%]"
+          loading="lazy"
           alt={item.title}
         />
       </div>
