@@ -37,6 +37,7 @@ function StoreGridItem({ item }) {
           src={item.image}
           className="w-[100%] object-cover h-[100%]"
           loading="lazy"
+          fill
           alt={item.title}
         />
       </div>
