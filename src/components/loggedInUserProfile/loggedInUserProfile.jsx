@@ -114,7 +114,7 @@ function LoggedInUserProfile() {
           <li
             className="drop-down-item-4 pb-4"
             onClick={() => {
-              signOut();
+              signOut({ callbackUrl: "/" });
             }}
           >
             <FontAwesomeIcon
