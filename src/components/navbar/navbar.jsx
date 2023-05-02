@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
 import MobileSidebar from "../mobileSidebar/mobileSidebar";
 import LoggedInUserProfile from "../loggedInUserProfile/loggedInUserProfile";
-import Logo from "../logo/logo";
+
 function Navbar() {
   const { data, status } = useSession();
   const [userIsLogged, setUserIsLogged] = useState(false);
