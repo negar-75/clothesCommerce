@@ -1,14 +1,29 @@
 import CountrySelection from "../../src/components/countrySelection/countrySelection";
 import Link from "next/link";
-import { useState, useRef } from "react";
-import { signIn } from "next-auth/react";
+import { useState, useRef, useEffect } from "react";
+import { signIn, getProviders } from "next-auth/react";
 import PopUp from "../../src/components/popUp/popUp";
 
-function Register() {
+function Register({ providers }) {
+  const [providersList, setProvidersList] = useState([]);
   const [user, setUser] = useState({});
   const passRef = useRef();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+  useEffect(() => {
+    const newArr = Object.keys(providers).map((key) => {
+      return {
+        id: key,
+        name: providers[key].name,
+        type: providers[key].type,
+        signinUrl: providers[key].signinUrl,
+        callbackUrl: providers[key].callbackUrl,
+        image: `/${key}_icon.png`,
+      };
+    });
+    setProvidersList(newArr);
+  }, []);
 
   const handleChange = (event) => {
     setUser({
@@ -26,7 +41,7 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(user);
+
     fetch(`${process.env.NEXTAUTH_URL}/api/user`, {
       method: "POST",
       body: JSON.stringify(user),
@@ -168,42 +183,30 @@ function Register() {
       </form>
       <div className="items-center mt-10 flex flex-col gap-4">
         <h3>Or Register with:</h3>
-        <button
-          className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px]"
-          onClick={() =>
-            signIn("google", {
-              callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/`,
-            })
-          }
-        >
-          <img
-            src="/google_icon.png"
-            className="w-[40px] h-[40px]"
-          />
-
-          <span>Google</span>
-        </button>
-        <button
-          className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px] "
-          onClick={() =>
-            signIn("facebook", {
-              callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/`,
-            })
-          }
-        >
-          <img
-            src="/facebook_icon.png"
-            className="w-[30px] h-[30px] ml-2"
-          />
-          <span className="ml-1">Facebook</span>
-        </button>
-        <button className="flex items-center w-[200px] justify-center gap-2 h-[40px] border-2">
-          <img
-            src="/apple_icon.png"
-            className="w-[30px] h-[30px]"
-          />
-          <span>Apple</span>
-        </button>
+        {providersList &&
+          providersList.map((provider) => {
+            if (provider.id !== "credentials") {
+              return (
+                <button
+                  key={provider.id}
+                  className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px]"
+                  onClick={() =>
+                    signIn(`${provider.id}`, {
+                      callbackUrl: `${window.location.origin}/`,
+                    })
+                  }
+                >
+                  {provider.image && (
+                    <img
+                      src={provider.image}
+                      className="w-[25px] h-[25px]"
+                    />
+                  )}{" "}
+                  <span>{provider.name}</span>
+                </button>
+              );
+            }
+          })}
       </div>
       <PopUp
         isModalOpen={isModalOpen}
@@ -216,4 +219,10 @@ function Register() {
 
 export default Register;
 
-export async function getServerSideProps(ctx) {}
+export async function getServerSideProps(context) {
+  const providers = await getProviders(context);
+  console.log(providers);
+  return {
+    props: { providers },
+  };
+}
