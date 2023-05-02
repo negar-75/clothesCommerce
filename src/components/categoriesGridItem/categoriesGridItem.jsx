@@ -1,13 +1,16 @@
 import wordCounter from "../../../functions/wordCounter";
+import Image from "next/image";
 
 function CategoriesGridItem({ image, title, desc, href }) {
   return (
     <div className="flex flex-col items-center text-center mb-10">
-      <div className="mb-2 w-full h-[23rem] flex md:h-[26rem] md:w-[22rem] justify-center">
-        <img
+      <div className="mb-2 w-full h-[23rem] flex md:h-[26rem] md:w-[22rem] justify-center relative">
+        <Image
           src={image}
           alt={title}
-          style={{ objectFit: "cover", height: "100%", width: "100%" }}
+          fill
+          loading="lazy"
+          className=" object-cover"
         />
       </div>
 
