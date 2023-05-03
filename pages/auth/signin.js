@@ -1,12 +1,25 @@
 import { signIn, getSession } from "next-auth/react";
-import { getCsrfToken } from "next-auth/react";
-import { useRef } from "react";
+import { getCsrfToken, getProviders } from "next-auth/react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 
 function SignInPage(props) {
   const emailRef = useRef();
   const passwordRef = useRef();
-
+  const [providersList, setProvidersList] = useState([]);
+  useEffect(() => {
+    const newArr = Object.keys(props.providers).map((key) => {
+      return {
+        id: key,
+        name: props.providers[key].name,
+        type: props.providers[key].type,
+        signinUrl: props.providers[key].signinUrl,
+        callbackUrl: props.providers[key].callbackUrl,
+        image: `/${key}_icon.png`,
+      };
+    });
+    setProvidersList(newArr);
+  }, []);
   return (
     <div
       className=" h-full flex flex-col py-10  
@@ -79,31 +92,30 @@ function SignInPage(props) {
           <h3 className="flex-shrink text-2xl  px-4 inline">OR</h3>
           <div className="flex-grow h-[1px] bg-black "></div>
         </div>
-        <button
-          className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px] border-black"
-          onClick={() => signIn("google")}
-        >
-          <img
-            src="/google_icon.png"
-            className="w-[40px] h-[40px] object-cover"
-          />
-
-          <span>Google</span>
-        </button>
-        <button className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px] border-black">
-          <img
-            src="/facebook_icon.png"
-            className="w-[30px] h-[30px] object-cover"
-          />
-          <span className="ml-1">Facebook</span>
-        </button>
-        <button className="flex items-center w-[200px] justify-center gap-2 h-[40px] border-2 border-black">
-          <img
-            src="/apple_icon.png"
-            className="w-[30px] h-[30px] object-cover"
-          />
-          <span>Apple</span>
-        </button>
+        {providersList &&
+          providersList.map((provider) => {
+            if (provider.id !== "credentials") {
+              return (
+                <button
+                  key={provider.id}
+                  className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px] border-black"
+                  onClick={() =>
+                    signIn(`${provider.id}`, {
+                      callbackUrl: `${window.location.origin}/`,
+                    })
+                  }
+                >
+                  {provider.image && (
+                    <img
+                      src={provider.image}
+                      className="w-[25px] h-[25px]"
+                    />
+                  )}{" "}
+                  <span>{provider.name}</span>
+                </button>
+              );
+            }
+          })}
       </div>
     </div>
   );
@@ -112,8 +124,9 @@ function SignInPage(props) {
 export default SignInPage;
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
-
-  if (!session) {
+  const providers = await getProviders(ctx);
+  console.log(providers);
+  if (!session && !providers) {
     return {
       props: {},
     };
@@ -122,8 +135,8 @@ export async function getServerSideProps(ctx) {
   return {
     props: {
       session,
+      providers,
       csrfToken: await getCsrfToken(ctx),
     },
-    redirect: { destination: "/" },
   };
 }
