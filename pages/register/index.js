@@ -176,20 +176,24 @@ function Register({ providers }) {
           />
         </div>
         <div className=" lg:col-span-2 text-center py-5">
-          <button className="border-2 w-[200px] h-[40px] uppercase">
+          <button className="border-2 w-[200px] h-[40px] uppercase border-black">
             submit
           </button>
         </div>
       </form>
       <div className="items-center mt-10 flex flex-col gap-4">
-        <h3>Or Register with:</h3>
+        <div className="font-semibold mb-8 relative flex items-center w-[80%]">
+          <div className="flex-grow h-[1px] bg-black "></div>
+          <h3 className="flex-shrink text-2xl  px-4 inline">OR</h3>
+          <div className="flex-grow h-[1px] bg-black "></div>
+        </div>
         {providersList &&
           providersList.map((provider) => {
             if (provider.id !== "credentials") {
               return (
                 <button
                   key={provider.id}
-                  className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px]"
+                  className="flex items-center border-2 w-[200px] justify-center gap-2 h-[40px] border-black"
                   onClick={() =>
                     signIn(`${provider.id}`, {
                       callbackUrl: `${window.location.origin}/`,
