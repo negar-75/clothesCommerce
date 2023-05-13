@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import { MongoClient } from "mongodb";
 
 // export const filePath = () => {
@@ -71,9 +69,7 @@ export default async function handler(req, res) {
       }
 
       default: {
-        // const path = filePath();
-        // const data = extractData(path);
-        // res.status(200).json({ users: data });
+        res.status(200).json("only post method available");
         break;
       }
     }
