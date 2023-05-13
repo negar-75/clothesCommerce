@@ -42,7 +42,7 @@ function Register({ providers }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch(`${process.env.NEXTAUTH_URL}/api/user`, {
+    fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/user`, {
       method: "POST",
       body: JSON.stringify(user),
       headers: {
